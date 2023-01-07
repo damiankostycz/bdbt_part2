@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Strona Logowania</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/main_user.css}">
+</head>
+<body th:style="'background: url(https://wallpapercave.com/wp/wp2089569.jpg) no-repeat center center fixed;'">
+
+
+
+<div class="container py-xl-5 h-100">
+
+    <div class="row d-flex justify-content-center align-items-center h-auto">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 ">
+            <div class="card shadow-2-strong bg-glass " style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <form method="post" th:action="@{/login}">
+                        <h3 class="mb-5" style="color: aliceblue">Zaloguj się</h3>
+
+                        <div class="form-group mb-4">
+                            <label for="login" style="color: aliceblue">Login:</label>
+                            <input id="login" type="text" placeholder="Podaj login" autocomplete="off" class="form-control form-control-lg" name="username"/>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="password" style="color: aliceblue">Hasło:</label>
+                            <input id="password" type="password" placeholder="Podaj hasło" autocomplete="off" class="form-control form-control-lg" name="password"/>
+                        </div>
+
+                        <div th:if="${param.error}" style="color:red; margin-bottom:15px; font-optical-sizing: auto">
+                            <strong>Nieprawidłowy login lub hasło!</strong>
+                        </div>
+
+                        <button class="btn btn-success" type="submit" value="Sign In">Login</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
