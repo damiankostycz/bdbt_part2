@@ -20,30 +20,29 @@
             <a th:href="@{/nasze_zawody}" class="btn btn-primary btn-sm">Nasze zawody</a>
             <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
             <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
-
-            <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle"></i>
-            <span sec:authorize="isAuthenticated()">
-                    <span sec:authentication="name"></span>
-                </span>
-        </button>
         </div>
     </div>
+    <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-circle"></i>
+        <span sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name"></span>
+                </span>
+    </button>
     <form th:action="@{/logout}" method="post">
         <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
     </form>
 </nav>
 
 <div class="container">
-    <div class="center" style="color: aliceblue" >
+    <div class="center" style="color: black" >
         <h1> Zawody w których braliśmy udział </h1>
     </div>
 
 </div>
 
-<div class="container center">
-    <div class="center" style="color: black" >
-        <table>
+<div class="container">
+    <div class="text-center" style="color: black" >
+        <table class="table-center table table-striped">
             <thead>
             <tr>
                 <th>Nr_zawodów</th>
@@ -54,6 +53,7 @@
                 <th>Brązowe medale</th>
                 <th>Numer klubu</th>
                 <th>Adres</th>
+                <th>Opcje</th>
             </tr>
             </thead>
             <tbody>
@@ -71,8 +71,8 @@
                     <a th:text="${zawody.numer_budynku}"></a>
                 </td>
                 <td>
-                    <i class="fa-regular fa-pen-to-square icon edit"></i>
-                    <i class="fa-regular fa-trash-can icon delete"></i>
+                    <a><button class="btn-outline-info">Edytuj</button></a>
+                    <a><button class="btn-outline-danger">Usuń</button></a>
                 </td>
             </tr>
             </tbody>
@@ -109,4 +109,3 @@
 
 </body>
 </html>
-

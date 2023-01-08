@@ -8,6 +8,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -29,7 +30,7 @@ class SpringAplicationApplicationTests {
 	void testList(){
 		List<Zawodnicy> meczeList = dao.list();
 		System.out.println(meczeList);
-		assertTrue(!meczeList.isEmpty());
+		assertFalse(meczeList.isEmpty());
 	}
 	@Test
 	void contextLoads() {

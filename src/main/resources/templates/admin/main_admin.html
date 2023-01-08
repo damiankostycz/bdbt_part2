@@ -17,18 +17,17 @@
     <div class="container">
         <a th:href="@{/}" class="navbar-brand font-weight-bold p1">Klub Lekkoatletyczny</a>
         <div>
-            <a th:href="@{/nasze_zawody}" class="btn btn-dark btn-sm">Nasze zawody</a>
+            <a th:href="@{/nasze_zawody}" class="btn btn-primary btn-sm">Nasze zawody</a>
             <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
             <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
-
-            <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle"></i>
-            <span sec:authorize="isAuthenticated()">
-                    <span sec:authentication="name"></span>
-                </span>
-        </button>
         </div>
     </div>
+    <button class="btn btn-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-circle"></i>
+        <span sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name"></span>
+                </span>
+    </button>
     <form th:action="@{/logout}" method="post">
         <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
     </form>

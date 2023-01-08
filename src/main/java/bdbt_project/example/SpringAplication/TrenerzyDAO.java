@@ -19,7 +19,7 @@ public class TrenerzyDAO {
     }
 
     public List<Trenerzy> list(){
-        String sql = "SELECT p.nr_pracownika, p.Imie, p.Nazwisko, p.Telefon, p.Email,p.nr_klubu, t.Dyscyplina, t.Stopien_zaawansowania FROM Pracownicy p JOIN Trenerzy t ON p.Nr_pracownika = t.Nr_pracownika";
+        String sql = "select p.nr_pracownika, p.Imie, p.Nazwisko, p.Telefon, p.Email,p.Nr_klubu, t.Dyscyplina, t.Stopien_zaawansowania from Pracownicy p join Trenerzy t on p.Nr_pracownika = t.Nr_pracownika";
 
         List<Trenerzy> trenerzyList = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Trenerzy.class));
 

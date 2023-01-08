@@ -14,7 +14,9 @@ function hideLoginWindow() {
 
 function logout(){
     if(confirm("Czy na pewno chcesz się wylogować?"))
-        
         alert("Zostałeś wylogowany")
 
+
 }
+
+

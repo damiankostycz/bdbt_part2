@@ -22,15 +22,14 @@
       <a th:href="@{/nasze_zawody}" class="btn btn-dark btn-sm">Nasze zawody</a>
       <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
       <a th:href="@{/zawodnicy}" class="btn btn-primary btn-sm">Zawodnicy</a>
-
-      <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-circle"></i>
-        <span sec:authorize="isAuthenticated()">
-          <span sec:authentication="name"></span>
-        </span>
-      </button>
     </div>
   </div>
+  <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-user-circle"></i>
+    <span sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name"></span>
+                </span>
+  </button>
   <form th:action="@{/logout}" method="post">
     <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
   </form>
@@ -39,8 +38,8 @@
 
 
 <div class="container">
-  <div class="center" style="color: black" >
-    <table>
+  <div class="text-center" style="color: black" >
+    <table class="table-center table table-striped">
       <thead>
       <tr>
         <th>nr_zawodnika</th>
@@ -76,8 +75,8 @@
         <td th:text="${klub.nrKlubu}"></td>
         <td th:text="${klub.idAdresu}"></td>
         <td>
-          <i class="fa-regular fa-pen-to-square icon edit"></i>
-          <i class="fa-regular fa-trash-can icon delete"></i>
+          <a><button class="btn-outline-info">Edytuj</button></a>
+          <a><button class="btn-outline-danger">Usuń</button></a>
         </td>
       </tr>
       </tbody>
@@ -112,4 +111,3 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
-

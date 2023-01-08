@@ -7,9 +7,6 @@
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{/css/main_user.css}"/>
     <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-
-
-
 </head>
 
 <body>
@@ -22,25 +19,24 @@
             <a th:href="@{/nasze_zawody}" class="btn btn-dark btn-sm">Nasze zawody</a>
             <a th:href="@{/trenerzy}" class="btn btn-primary btn-sm">Trenerzy i sekcje</a>
             <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
-
-            <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle"></i>
-            <span sec:authorize="isAuthenticated()">
-                    <span sec:authentication="name"></span>
-                </span>
-        </button>
         </div>
     </div>
+    <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-circle"></i>
+        <span sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name"></span>
+                </span>
+    </button>
     <form th:action="@{/logout}" method="post">
         <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
-   </form>
+    </form>
 </nav>
 
 
 
-<div class="container center">
-    <div class="center" style="color: black" >
-        <table>
+<div class="container">
+    <div class="text-center" style="color: black" >
+        <table class="table-center table table-striped">
             <thead>
             <tr>
                 <th>id_trenera</th>
@@ -52,6 +48,8 @@
                 <th>Nr klubu</th>
                 <th>Stopień zaawansowania</th>
                 <th>Opcje</th>
+                <th>     <i class="fa-regular fa-pen-to-square"></i>
+                </th>
 
             </tr>
             </thead>
@@ -66,8 +64,8 @@
                 <td th:text="${trener.nrKlubu}"></td>
                 <td th:text="${trener.stopienZaawansowania}"></td>
                 <td>
-                    <i class="fa-regular fa-pen-to-square icon edit"></i>
-                    <i class="fa-regular fa-trash-can icon delete"></i>
+                    <a><button class="btn-outline-info">Edytuj</button></a>
+                    <a><button class="btn-outline-danger">Usuń</button></a>
                 </td>
             </tr>
             </tbody>
@@ -102,4 +100,3 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
-

@@ -21,29 +21,34 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand font-weight-bold p1"  href="/">Klub Lekkoatletyczny</a>
-        <div>
+        <div class="navbar-nav ml-auto">
             <a th:href="@{/nasze_zawody}" class="btn btn-dark btn-sm">Nasze zawody</a>
             <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
-            <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle"></i>
-                <span sec:authorize="isAuthenticated()">
-                    <span sec:authentication="name"></span>
-                </span>
-            </button>
-            <a th:href="@{/login}" class="btn btn-success navbar-brand ml-auto" role="button" aria-pressed="false">Zaloguj</a>
-            <span sec:authorize="isAuthenticated()" >
-                <button id = "logout-button" th:href="@{/}" class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" onclick="logout()">Wyloguj</button>
-            </span>
+            <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
         </div>
     </div>
+        <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle"></i>
+            <span sec:authorize="isAuthenticated()">
+                <span sec:authentication="name"></span>
+            </span>
+        </button>
+        <span sec:authorize="!isAuthenticated()" >
+            <a th:href="@{/login}" class="btn btn-success navbar-brand ml-auto" role="button" aria-pressed="false">Zaloguj</a>
+        </span>
+        <form th:action="@{/logout}" method="post">
+            <span sec:authorize="isAuthenticated()" >
+                <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
+            </span>
+        </form>
 </nav>
 
 
-    <div class="center">
-        <h1 style="font-family: Impact, fantasy" > WITAMY! </h1>
-        <p>To oficjalna strona naszego Klubu Lekkoatletycznego.</p>
-        <p>Jeśli chcesz zobaczyć więcej musisz się zalogować.</p>
-    </div>
+<div class="center" style="color:aliceblue;">
+    <h1 style="font-family: Impact, fantasy" > WITAMY! </h1>
+    <p>To oficjalna strona naszego Klubu Lekkoatletycznego.</p>
+    <p>Jeśli chcesz zobaczyć więcej musisz się zalogować.</p>
+</div>
 
 <!-- footstop -->
 <div class="footer flx">
@@ -75,4 +80,3 @@
 
 </body>
 </html>
-
