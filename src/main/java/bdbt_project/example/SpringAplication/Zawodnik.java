@@ -1,5 +1,6 @@
 package bdbt_project.example.SpringAplication;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Zawodnicy {
@@ -9,7 +10,7 @@ public class Zawodnicy {
     private char plec;
     private String pesel;
     private String email;
-    private String dataDolaczenia;
+    private LocalDate dataDolaczenia;
     private String krajPochodzenia;
     private String dyscyplina;
     private String rekordZyciowy;
@@ -19,7 +20,7 @@ public class Zawodnicy {
 
     public Zawodnicy(){}
 
-    public Zawodnicy(int nr_zawodnika, String imie, String nazwisko, char plec, String pesel, String email, String dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga, int nrKlubu, int idAdresu) {
+    public Zawodnicy(int nr_zawodnika, String imie, String nazwisko, char plec, String pesel, String email, LocalDate dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga, int nrKlubu, int idAdresu) {
         this.nr_zawodnika = nr_zawodnika;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -83,11 +84,11 @@ public class Zawodnicy {
         this.email = email;
     }
 
-    public String getDataDolaczenia() {
+    public LocalDate getDataDolaczenia() {
         return dataDolaczenia;
     }
 
-    public void setDataDolaczenia(String dataDolaczenia) {
+    public void setDataDolaczenia(LocalDate dataDolaczenia) {
         this.dataDolaczenia = dataDolaczenia;
     }
 
