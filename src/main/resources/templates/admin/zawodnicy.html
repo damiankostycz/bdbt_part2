@@ -60,23 +60,23 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="klub: ${zawodnicy}">
-        <td th:text="${klub.nr_zawodnika}"></td>
-        <td th:text="${klub.imie}"></td>
-        <td th:text="${klub.nazwisko}"></td>
-        <td th:text="${klub.plec}"></td>
-        <td th:text="${klub.pesel}"></td>
-        <td th:text="${klub.email}"></td>
-        <td th:text="${klub.dataDolaczenia}"></td>
-        <td th:text="${klub.krajPochodzenia}"></td>
-        <td th:text="${klub.dyscyplina}"></td>
-        <td th:text="${klub.rekordZyciowy}"></td>
-        <td th:text="${klub.waga}"></td>
-        <td th:text="${klub.nrKlubu}"></td>
-        <td th:text="${klub.idAdresu}"></td>
+      <tr th:each="zawodnik: ${zawodnicy}">
+        <td th:text="${zawodnik.nr_zawodnika}"></td>
+        <td th:text="${zawodnik.imie}"></td>
+        <td th:text="${zawodnik.nazwisko}"></td>
+        <td th:text="${zawodnik.plec}"></td>
+        <td th:text="${zawodnik.pesel}"></td>
+        <td th:text="${zawodnik.email}"></td>
+        <td th:text="${zawodnik.dataDolaczenia}"></td>
+        <td th:text="${zawodnik.krajPochodzenia}"></td>
+        <td th:text="${zawodnik.dyscyplina}"></td>
+        <td th:text="${zawodnik.rekordZyciowy}"></td>
+        <td th:text="${zawodnik.waga}"></td>
+        <td th:text="${zawodnik.nrKlubu}"></td>
+        <td th:text="${zawodnik.idAdresu}"></td>
         <td>
-          <a><button class="btn-outline-info">Edytuj</button></a>
-          <a><button class="btn-outline-danger">Usuń</button></a>
+          <a class="btn btn-outline-info">Edytuj</a>
+          <a th:href="@{'/delete_zawodnicy/' + ${zawodnik.nr_zawodnika}}" class="btn btn-outline-danger">Usuń</a>
         </td>
       </tr>
       </tbody>

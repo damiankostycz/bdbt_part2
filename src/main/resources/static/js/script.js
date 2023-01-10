@@ -15,8 +15,19 @@ function hideLoginWindow() {
 function logout(){
     if(confirm("Czy na pewno chcesz się wylogować?"))
         alert("Zostałeś wylogowany")
+}
 
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
 
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
+function deleteConfirmation(){
+    if(confirm("Czy na pewno chcesz usunąć wybrany element?"))
+        alert("Dane zostały usunięte")
 }
 
 

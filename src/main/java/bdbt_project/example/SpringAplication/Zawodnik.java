@@ -1,9 +1,8 @@
 package bdbt_project.example.SpringAplication;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Zawodnicy {
+public class Zawodnik {
     private int nr_zawodnika;
     private String imie;
     private String nazwisko;
@@ -18,9 +17,9 @@ public class Zawodnicy {
     private int nrKlubu;
     private int idAdresu;
 
-    public Zawodnicy(){}
+    public Zawodnik(){}
 
-    public Zawodnicy(int nr_zawodnika, String imie, String nazwisko, char plec, String pesel, String email, LocalDate dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga, int nrKlubu, int idAdresu) {
+    public Zawodnik(int nr_zawodnika, String imie, String nazwisko, char plec, String pesel, String email, LocalDate dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga, int nrKlubu, int idAdresu) {
         this.nr_zawodnika = nr_zawodnika;
         this.imie = imie;
         this.nazwisko = nazwisko;

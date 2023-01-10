@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -62,23 +63,41 @@ class DashboardController {
 
     @RequestMapping("/zawodnicy")
     public String viewMatchesZawodnicy(Model model){
-        List<Zawodnicy> zawodnicyList = zawodnicyDAO.list();
-        model.addAttribute("zawodnicy", zawodnicyList);
+        List<Zawodnik> zawodnikList = zawodnicyDAO.list();
+        model.addAttribute("zawodnicy", zawodnikList);
         return "admin/zawodnicy";
     }
 
     @RequestMapping("/trenerzy")
     public String viewMatchesTrenerzy(Model model){
-        List<Trenerzy> trenerzyList = trenerzyDAO.list();
-        model.addAttribute("trenerzy", trenerzyList);
+        List<Trener> trenerList = trenerzyDAO.list();
+        model.addAttribute("trenerzy", trenerList);
         return "user/trenerzy";
     }
-
 
     @RequestMapping("/nasze_zawody")
     public String viewMatchesZawody(Model model){
         List<Zawody> zawodyList = zawodyDAO.list();
         model.addAttribute("zawody", zawodyList);
         return "user/nasze_zawody";
+    }
+
+    @RequestMapping("/delete_trenerzy/{id}")
+    public String deleteTrenerzy(@PathVariable(name = "id") int id){
+        trenerzyDAO.delete(id);
+        return "redirect:/trenerzy";
+
+    }
+    @RequestMapping("/delete_zawodnicy/{id}")
+    public String deleteZawodnicy(@PathVariable(name = "id") int id){
+        zawodnicyDAO.delete(id);
+        return "redirect:/zawodnicy";
+
+    }
+    @RequestMapping("/delete_zawody/{id}")
+    public String deleteZawody(@PathVariable(name = "id") int id){
+        zawodyDAO.delete(id);
+        return "redirect:/nasze_zawody";
+
     }
 }

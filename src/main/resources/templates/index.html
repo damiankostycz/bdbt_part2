@@ -6,7 +6,7 @@
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{/css/main_user.css}"/>
-    <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v6.2.1/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
 
 </head>
@@ -18,21 +18,29 @@
 
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-link  shadow-5-strong">
     <div class="container">
         <a class="navbar-brand font-weight-bold p1"  href="/">Klub Lekkoatletyczny</a>
-        <div class="navbar-nav ml-auto">
-            <a th:href="@{/nasze_zawody}" class="btn btn-dark btn-sm">Nasze zawody</a>
-            <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
-            <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a th:href="@{/nasze_zawody}" class="nav-link">Nasze zawody</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/trenerzy}" class="nav-link">Trenerzy i sekcje</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/zawodnicy}" class="nav-link">Zawodnicy</a>
+                </li>
+            </ul>
         </div>
     </div>
-        <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span sec:authorize="isAuthenticated()" >
+        <button class="btn btn-outline-primary navbar-brand ml-auto">
             <i class="fas fa-user-circle"></i>
-            <span sec:authorize="isAuthenticated()">
-                <span sec:authentication="name"></span>
-            </span>
+            <span sec:authentication="name"></span>
         </button>
+    </span>
         <span sec:authorize="!isAuthenticated()" >
             <a th:href="@{/login}" class="btn btn-success navbar-brand ml-auto" role="button" aria-pressed="false">Zaloguj</a>
         </span>

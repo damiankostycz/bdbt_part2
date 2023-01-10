@@ -1,10 +1,11 @@
 package bdbt_project.example.SpringAplication;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Zawody {
     private int nr_zawodow;
-    private String data;
+    private LocalDate data;
     private int liczba_biletow;
     private int zlote_medale;
     private int srebrne_medale;
@@ -16,7 +17,7 @@ public class Zawody {
 
     public Zawody(){}
 
-    public Zawody(int nr_zawodow, String data, int liczba_biletow, int zlote_medale, int srebrne_medale, int brazowe_medale, int nr_klubu, String miasto, String ulica, String numer_budynku) {
+    public Zawody(int nr_zawodow, LocalDate data, int liczba_biletow, int zlote_medale, int srebrne_medale, int brazowe_medale, int nr_klubu, String miasto, String ulica, String numer_budynku) {
         this.nr_zawodow = nr_zawodow;
         this.data = data;
         this.liczba_biletow = liczba_biletow;
@@ -37,11 +38,11 @@ public class Zawody {
         this.nr_zawodow = nr_zawodow;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

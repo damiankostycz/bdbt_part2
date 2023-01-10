@@ -1,6 +1,6 @@
 package bdbt_project.example.SpringAplication;
 
-public class Trenerzy {
+public class Trener {
     private int nr_pracownika;
     private String imie;
     private String nazwisko;
@@ -10,9 +10,9 @@ public class Trenerzy {
     private int nrKlubu;
     private String stopienZaawansowania;
 
-    public Trenerzy(){}
+    public Trener(){}
 
-    public Trenerzy(int id, String imie, String nazwisko, String dyscyplina, String email, String telefon, String stopien_zaawansowania, int nrKlubu, String stopienZaawansowania) {
+    public Trener(int id, String imie, String nazwisko, String dyscyplina, String email, String telefon, String stopien_zaawansowania, int nrKlubu, String stopienZaawansowania) {
         this.nr_pracownika = id;
         this.imie = imie;
         this.nazwisko = nazwisko;

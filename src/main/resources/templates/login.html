@@ -22,12 +22,12 @@
 
                         <div class="form-group mb-4">
                             <label for="login" style="color: aliceblue">Login:</label>
-                            <input id="login" type="text" placeholder="Podaj login" autocomplete="off" class="form-control form-control-lg" name="username"/>
+                            <input id="login" type="text" placeholder="Podaj login" autocomplete="off" class="form-control form-control-lg" name="username" required/>
                         </div>
 
                         <div class="form-group mb-4">
                             <label for="password" style="color: aliceblue">Hasło:</label>
-                            <input id="password" type="password" placeholder="Podaj hasło" autocomplete="off" class="form-control form-control-lg" name="password"/>
+                            <input id="password" type="password" placeholder="Podaj hasło" autocomplete="off" class="form-control form-control-lg" name="password" required/>
                         </div>
 
                         <div th:if="${param.error}" style="color:red; margin-bottom:15px; font-optical-sizing: auto">

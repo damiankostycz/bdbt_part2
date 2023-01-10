@@ -18,31 +18,33 @@ public class ZawodnicyDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Zawodnicy> list(){
+    public List<Zawodnik> list(){
         String sql = "select * from zawodnicy";
-        List<Zawodnicy> zawodnicyList = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Zawodnicy.class));
-        return zawodnicyList;
+        List<Zawodnik> zawodnikList = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Zawodnik.class));
+        return zawodnikList;
     }
 
 
     /* Insert – wstawianie nowego wiersza do bazy */
-    public void save(Zawodnicy sale) {
+    public void save(Zawodnik sale) {
     }
 
 
     /* Read – odczytywanie danych z bazy */
-    public Zawodnicy get(int id) {
+    public Zawodnik get(int id) {
         return null;
     }
 
 
     /* Update – aktualizacja danych */
-    public void update(Zawodnicy sale) {
+    public void update(Zawodnik sale) {
     }
 
 
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        String sql = "DELETE FROM Zawodnicy WHERE nr_zawodnika = ?";
+        jdbcTemplate.update(sql, id);
     }
 
 }

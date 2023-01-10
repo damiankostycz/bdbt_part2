@@ -64,14 +64,13 @@
                 <td th:text="${trener.nrKlubu}"></td>
                 <td th:text="${trener.stopienZaawansowania}"></td>
                 <td>
-                    <a><button class="btn-outline-info">Edytuj</button></a>
-                    <a><button class="btn-outline-danger">Usuń</button></a>
+                    <a class="btn btn-outline-info">Edytuj</a>
+                    <a th:href="@{'/delete_trenerzy/' + ${trener.nr_pracownika}}" class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-
 </div>
 
 <!-- footstop -->
@@ -98,5 +97,6 @@
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{static/script.js}"></script>
 </body>
 </html>

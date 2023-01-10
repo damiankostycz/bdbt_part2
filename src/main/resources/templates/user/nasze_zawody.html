@@ -71,8 +71,8 @@
                     <a th:text="${zawody.numer_budynku}"></a>
                 </td>
                 <td>
-                    <a><button class="btn-outline-info">Edytuj</button></a>
-                    <a><button class="btn-outline-danger">Usuń</button></a>
+                    <a class="btn btn-outline-info">Edytuj</a>
+                    <a th:href="@{'/delete_zawody/' + ${zawody.nr_zawodow}}" class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
                 </td>
             </tr>
             </tbody>
@@ -106,6 +106,6 @@
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
+<script th:src="@{/static/script}"></script>
 </body>
 </html>

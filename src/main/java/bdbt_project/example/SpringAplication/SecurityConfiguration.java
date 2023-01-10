@@ -20,7 +20,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/index", "/resources/static/**").permitAll()
                         .requestMatchers("/main").authenticated()
                         .requestMatchers("/main_user").hasRole("USER")
-                        .requestMatchers("/main_admin", "/main/user").hasRole("ADMIN")
+                        .requestMatchers("/main_admin").hasRole("ADMIN")
                         .anyRequest().authenticated() //Any other request that doesn’t match the rules above, will require authentication
 
                 )

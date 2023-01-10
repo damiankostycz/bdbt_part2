@@ -18,33 +18,37 @@ public class TrenerzyDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Trenerzy> list(){
+    public List<Trener> list(){
         String sql = "select p.nr_pracownika, p.Imie, p.Nazwisko, p.Telefon, p.Email,p.Nr_klubu, t.Dyscyplina, t.Stopien_zaawansowania from Pracownicy p join Trenerzy t on p.Nr_pracownika = t.Nr_pracownika";
 
-        List<Trenerzy> trenerzyList = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Trenerzy.class));
+        List<Trener> trenerzyList = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Trener.class));
 
         return trenerzyList;
     }
 
 
     /* Insert – wstawianie nowego wiersza do bazy */
-    public void save(Trenerzy sale) {
+    public void save(Trener sale) {
     }
 
 
     /* Read – odczytywanie danych z bazy */
-    public Trenerzy get(int id) {
+    public Trener get(int id) {
         return null;
     }
 
 
     /* Update – aktualizacja danych */
-    public void update(Trenerzy sale) {
+    public void update(Trener sale) {
     }
 
 
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        String sql = "DELETE FROM Trenerzy WHERE nr_pracownika = ?";
+        String sql1 = "DELETE FROM Pracownicy WHERE nr_pracownika = ?";
+        jdbcTemplate.update(sql,id);
+        jdbcTemplate.update(sql1,id);
     }
 
 }

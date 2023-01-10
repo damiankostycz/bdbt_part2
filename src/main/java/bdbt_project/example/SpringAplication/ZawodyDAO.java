@@ -43,6 +43,8 @@ public class ZawodyDAO {
 
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        String sql = "DELETE FROM Zawody WHERE nr_zawodow = ?";
+        jdbcTemplate.update(sql, id);
     }
 
 }
