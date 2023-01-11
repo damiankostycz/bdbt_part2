@@ -1,5 +1,7 @@
 package bdbt_project.example.SpringAplication;
 
+import bdbt_project.example.SpringAplication.DAOs.ZawodnicyDAO;
+import bdbt_project.example.SpringAplication.data_representation.Zawodnik;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

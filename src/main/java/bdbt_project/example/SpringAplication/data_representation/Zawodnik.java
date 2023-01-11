@@ -1,4 +1,4 @@
-package bdbt_project.example.SpringAplication;
+package bdbt_project.example.SpringAplication.data_representation;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package bdbt_project.example.SpringAplication;
+package bdbt_project.example.SpringAplication.data_representation;
 
 public class Trener {
     private int nr_pracownika;

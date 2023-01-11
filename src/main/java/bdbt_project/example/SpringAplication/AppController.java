@@ -1,5 +1,11 @@
 package bdbt_project.example.SpringAplication;
 
+import bdbt_project.example.SpringAplication.DAOs.TrenerzyDAO;
+import bdbt_project.example.SpringAplication.DAOs.ZawodnicyDAO;
+import bdbt_project.example.SpringAplication.DAOs.ZawodyDAO;
+import bdbt_project.example.SpringAplication.data_representation.Trener;
+import bdbt_project.example.SpringAplication.data_representation.Zawodnik;
+import bdbt_project.example.SpringAplication.data_representation.Zawody;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

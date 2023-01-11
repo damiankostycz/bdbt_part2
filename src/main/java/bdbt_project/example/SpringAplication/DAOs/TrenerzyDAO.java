@@ -1,5 +1,6 @@
-package bdbt_project.example.SpringAplication;
+package bdbt_project.example.SpringAplication.DAOs;
 
+import bdbt_project.example.SpringAplication.data_representation.Trener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
