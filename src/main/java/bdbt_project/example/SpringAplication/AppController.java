@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -106,4 +108,34 @@ class DashboardController {
         return "redirect:/nasze_zawody";
 
     }
+
+//    @RequestMapping(value = "/addZawody", method = RequestMethod.POST)
+//    public String addZawody(@ModelAttribute("addZawody") Zawody model){
+//        zawodyDAO.save(model);
+//        return "redirect:/nasze_zawody";
+//    }
+//
+//    @RequestMapping("/addTrener")
+//    public String addTrener(Model model){
+//        Zawody zawody = new Zawody();
+//        model.addAttribute("trener", zawody);
+//        return "redirect:/trenerzy";
+//    }
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+//    public String saveTrener(@ModelAttribute("trener") Trener trener){
+//        trenerzyDAO.save(trener);
+//        return "redirect:/trenerzy";
+//    }
+//    @RequestMapping("/addZawodnik")
+//    public String addZawodnik(Model model){
+//        Zawodnik zawodnik = new Zawodnik();
+//        model.addAttribute("zawodnik", zawodnik);
+//        return "redirect:/zawodnicy";
+//    }
+//
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+//    public String saveZawody(@ModelAttribute("zawodnk") Zawodnik zawodnik){
+//        zawodnicyDAO.save(zawodnik);
+//        return "redirect:/zawodnicy";
+//    }
 }

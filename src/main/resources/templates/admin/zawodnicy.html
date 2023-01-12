@@ -11,7 +11,6 @@
 
 
 </head>
-
 <body>
 
 <!-- Navigation -->
@@ -61,7 +60,7 @@
       </thead>
       <tbody>
       <tr th:each="zawodnik: ${zawodnicy}">
-        <td th:text="${zawodnik.nr_zawodnika}"></td>
+        <td th:text="${zawodnik.nrZawodnika}"></td>
         <td th:text="${zawodnik.imie}"></td>
         <td th:text="${zawodnik.nazwisko}"></td>
         <td th:text="${zawodnik.plec}"></td>
@@ -76,12 +75,72 @@
         <td th:text="${zawodnik.idAdresu}"></td>
         <td>
           <a class="btn btn-outline-info">Edytuj</a>
-          <a th:href="@{'/delete_zawodnicy/' + ${zawodnik.nr_zawodnika}}" class="btn btn-outline-danger">Usuń</a>
+          <a th:href="@{'/delete_zawodnicy/' + ${zawodnik.nrZawodnika}}" class="btn btn-outline-danger">Usuń</a>
         </td>
       </tr>
+      <form action="#" th:action="@{/addZawody}" th:object="${zawody}" method="post">
+        <tr id="myForm" style="display:none">
+          <td>
+            <label for="nr_zawodnika"></label>
+            <input id="nr_zawodnika" type="text"   autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Imie"></label>
+            <input type="text" id="Imie" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Nazwisko"></label>
+            <input type="text" id="Nazwisko"  autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Plec"></label>
+            <input type="text" id="Plec" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Pesel"></label>
+            <input type="text" id="Pesel" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="E-mail"></label>
+            <input type="text" id="E-mail" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Data dołączenia"></label>
+            <input type="text" id="Data dołączenia" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Kraj pochodzenia"></label>
+            <input type="text" id="Kraj pochodzenia" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Dyscyplina"></label>
+            <input type="text" id="Dyscyplina" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Rekord życiowy"></label>
+            <input type="text" id="Rekord życiowy" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="Waga"></label>
+            <input type="text" id="Waga" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="nr_klubu"></label>
+            <input type="text" id="nr_klubu" autocomplete="on" class="form-control-sm" required>
+          </td>
+          <td>
+            <label for="id_adresu"></label>
+            <input type="text" id="id_adresu" autocomplete="on" class="form-control-sm" required>
+          </td>
+
+          <td>
+            <button class="btn btn-outline-success" type="submit"> Zapisz </button>
+          </td>
+        </tr>
+      </form>
       </tbody>
     </table>
-    <button class="btn btn-outline-info center" onclick="showHideAddButton()"> Dodaj </button>
+    <button class="btn btn-outline-info center" onclick="showHideRow()"> Dodaj </button>
   </div>
 
 </div>

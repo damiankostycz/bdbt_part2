@@ -31,12 +31,14 @@ function deleteConfirmation(){
 }
 
 function showHideRow() {
-    const x = document.getElementById("myForm");
-    if (x.style.display === "block") {
-        x.style.display = "none";
+    const row = document.getElementById("myForm");
+    const btn = document.getElementById("addButton");
+    if (row.style.display === "none") {
+        row.style.display = "table-row";
+        btn.textContent = "Anuluj";
     } else {
-        x.style.display = "block";
-
+        row.style.display = "none";
+        btn.textContent = "Dodaj";
     }
 }
 

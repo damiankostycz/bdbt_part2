@@ -1,7 +1,7 @@
 package bdbt_project.example.SpringAplication.data_representation;
 
 public class Trener {
-    private int nr_pracownika;
+    private int nrPracownika;
     private String imie;
     private String nazwisko;
     private String dyscyplina;
@@ -13,7 +13,7 @@ public class Trener {
     public Trener(){}
 
     public Trener(int id, String imie, String nazwisko, String dyscyplina, String email, String telefon, String stopien_zaawansowania, int nrKlubu, String stopienZaawansowania) {
-        this.nr_pracownika = id;
+        this.nrPracownika = id;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.dyscyplina = dyscyplina;
@@ -24,12 +24,12 @@ public class Trener {
 
     }
 
-    public int getNr_pracownika() {
-        return nr_pracownika;
+    public int getNrPracownika() {
+        return nrPracownika;
     }
 
-    public void setNr_pracownika(int nr_pracownika) {
-        this.nr_pracownika = nr_pracownika;
+    public void setNrPracownika(int nrPracownika) {
+        this.nrPracownika = nrPracownika;
     }
 
     public String getImie() {
@@ -91,7 +91,7 @@ public class Trener {
     @Override
     public String toString() {
         return "Trenerzy{" +
-                "id=" + nr_pracownika +
+                "id=" + nrPracownika +
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +
                 ", dyscyplina='" + dyscyplina + '\'' +

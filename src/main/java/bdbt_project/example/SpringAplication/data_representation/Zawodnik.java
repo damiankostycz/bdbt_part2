@@ -3,7 +3,7 @@ package bdbt_project.example.SpringAplication.data_representation;
 import java.time.LocalDate;
 
 public class Zawodnik {
-    private int nr_zawodnika;
+    private int nrZawodnika;
     private String imie;
     private String nazwisko;
     private char plec;
@@ -19,8 +19,8 @@ public class Zawodnik {
 
     public Zawodnik(){}
 
-    public Zawodnik(int nr_zawodnika, String imie, String nazwisko, char plec, String pesel, String email, LocalDate dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga, int nrKlubu, int idAdresu) {
-        this.nr_zawodnika = nr_zawodnika;
+    public Zawodnik(int nrZawodnika, String imie, String nazwisko, char plec, String pesel, String email, LocalDate dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga, int nrKlubu, int idAdresu) {
+        this.nrZawodnika = nrZawodnika;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.plec = plec;
@@ -35,12 +35,12 @@ public class Zawodnik {
         this.idAdresu = idAdresu;
     }
 
-    public int getNr_zawodnika() {
-        return nr_zawodnika;
+    public int getNrZawodnika() {
+        return nrZawodnika;
     }
 
-    public void setNr_zawodnika(int nr_zawodnika) {
-        this.nr_zawodnika = nr_zawodnika;
+    public void setNrZawodnika(int nrZawodnika) {
+        this.nrZawodnika = nrZawodnika;
     }
 
     public String getImie() {
@@ -142,7 +142,7 @@ public class Zawodnik {
     @Override
     public String toString() {
         return "Zawodnicy{" +
-                "nr_zawodnika=" + nr_zawodnika +
+                "nr_zawodnika=" + nrZawodnika +
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +
                 ", plec=" + plec +

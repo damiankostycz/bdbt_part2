@@ -1,9 +1,12 @@
 package bdbt_project.example.SpringAplication.DAOs;
 
 import bdbt_project.example.SpringAplication.data_representation.Trener;
+import bdbt_project.example.SpringAplication.data_representation.Zawodnik;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -29,7 +32,12 @@ public class TrenerzyDAO {
 
 
     /* Insert – wstawianie nowego wiersza do bazy */
-    public void save(Trener sale) {
+    public void save(Trener trener) {
+        SimpleJdbcInsert insertAction = new SimpleJdbcInsert(jdbcTemplate);
+        insertAction.withTableName("trener").usingColumns("nr_pracownika", "imie", "nazwisko", "dyscyplina", "email", "telefon", "nr_klubu", "stopien_zaawansowania");
+
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(trener);
+        insertAction.execute(param);
     }
 
 

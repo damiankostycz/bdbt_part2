@@ -1,41 +1,35 @@
 package bdbt_project.example.SpringAplication.data_representation;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Zawody {
-    private int nr_zawodow;
+    private int nrZawodow;
     private LocalDate data;
-    private int liczba_biletow;
-    private int zlote_medale;
-    private int srebrne_medale;
-    private int brazowe_medale;
-    private int nr_klubu;
-    private String miasto;
-    private String ulica;
-    private String numer_budynku;
+    private int liczbaBiletow;
+    private int zloteMedale;
+    private int srebrneMedale;
+    private int brazoweMedale;
+    private int nrKlubu;
+
 
     public Zawody(){}
 
-    public Zawody(int nr_zawodow, LocalDate data, int liczba_biletow, int zlote_medale, int srebrne_medale, int brazowe_medale, int nr_klubu, String miasto, String ulica, String numer_budynku) {
-        this.nr_zawodow = nr_zawodow;
+    public Zawody(int nrZawodow, LocalDate data, int liczbaBiletow, int zloteMedale, int srebrneMedale, int brazoweMedale, int nrKlubu) {
+        this.nrZawodow = nrZawodow;
         this.data = data;
-        this.liczba_biletow = liczba_biletow;
-        this.zlote_medale = zlote_medale;
-        this.srebrne_medale = srebrne_medale;
-        this.brazowe_medale = brazowe_medale;
-        this.nr_klubu = nr_klubu;
-        this.miasto = miasto;
-        this.ulica = ulica;
-        this.numer_budynku = numer_budynku;
+        this.liczbaBiletow = liczbaBiletow;
+        this.zloteMedale = zloteMedale;
+        this.srebrneMedale = srebrneMedale;
+        this.brazoweMedale = brazoweMedale;
+        this.nrKlubu = nrKlubu;
     }
 
-    public int getNr_zawodow() {
-        return nr_zawodow;
+    public int getNrZawodow() {
+        return nrZawodow;
     }
 
-    public void setNr_zawodow(int nr_zawodow) {
-        this.nr_zawodow = nr_zawodow;
+    public void setNrZawodow(int nrZawodow) {
+        this.nrZawodow = nrZawodow;
     }
 
     public LocalDate getData() {
@@ -46,83 +40,56 @@ public class Zawody {
         this.data = data;
     }
 
-    public int getLiczba_biletow() {
-        return liczba_biletow;
+    public int getLiczbaBiletow() {
+        return liczbaBiletow;
     }
 
-    public void setLiczba_biletow(int liczba_biletow) {
-        this.liczba_biletow = liczba_biletow;
+    public void setLiczbaBiletow(int liczbaBiletow) {
+        this.liczbaBiletow = liczbaBiletow;
     }
 
-    public int getZlote_medale() {
-        return zlote_medale;
+    public int getZloteMedale() {
+        return zloteMedale;
     }
 
-    public void setZlote_medale(int zlote_medale) {
-        this.zlote_medale = zlote_medale;
+    public void setZloteMedale(int zloteMedale) {
+        this.zloteMedale = zloteMedale;
     }
 
-    public int getSrebrne_medale() {
-        return srebrne_medale;
+    public int getSrebrneMedale() {
+        return srebrneMedale;
     }
 
-    public void setSrebrne_medale(int srebrne_medale) {
-        this.srebrne_medale = srebrne_medale;
+    public void setSrebrneMedale(int srebrneMedale) {
+        this.srebrneMedale = srebrneMedale;
     }
 
-    public int getBrazowe_medale() {
-        return brazowe_medale;
+    public int getBrazoweMedale() {
+        return brazoweMedale;
     }
 
-    public void setBrazowe_medale(int brazowe_medale) {
-        this.brazowe_medale = brazowe_medale;
+    public void setBrazoweMedale(int brazoweMedale) {
+        this.brazoweMedale = brazoweMedale;
     }
 
-    public int getNr_klubu() {
-        return nr_klubu;
+    public int getNrKlubu() {
+        return nrKlubu;
     }
 
-    public void setNr_klubu(int nr_klubu) {
-        this.nr_klubu = nr_klubu;
+    public void setNrKlubu(int nrKlubu) {
+        this.nrKlubu = nrKlubu;
     }
 
-    public String getMiasto() {
-        return miasto;
-    }
-
-    public void setMiasto(String miasto) {
-        this.miasto = miasto;
-    }
-
-    public String getUlica() {
-        return ulica;
-    }
-
-    public void setUlica(String ulica) {
-        this.ulica = ulica;
-    }
-
-    public String getNumer_budynku() {
-        return numer_budynku;
-    }
-
-    public void setNumer_budynku(String numer_budynku) {
-        this.numer_budynku = numer_budynku;
-    }
 
     @Override
     public String toString() {
         return "Zawody{" +
-                "nr_zawodow=" + nr_zawodow +
+                "nr_zawodow=" + nrZawodow +
                 ", data=" + data +
-                ", liczba_biletow=" + liczba_biletow +
-                ", zlote_medale=" + zlote_medale +
-                ", srebrne_medale=" + srebrne_medale +
-                ", brazowe_medale=" + brazowe_medale +
-                ", nr_klubu=" + nr_klubu +
-                ", miasto='" + miasto + '\'' +
-                ", ulica='" + ulica + '\'' +
-                ", numer_budynu='" + numer_budynku + '\'' +
-                '}';
+                ", liczba_biletow=" + liczbaBiletow +
+                ", zlote_medale=" + zloteMedale +
+                ", srebrne_medale=" + srebrneMedale +
+                ", brazowe_medale=" + brazoweMedale +
+                ", nr_klubu=" + nrKlubu;
     }
 }
