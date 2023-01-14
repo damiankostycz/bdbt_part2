@@ -32,8 +32,7 @@ public class ZawodnicyDAO {
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Zawodnik zawodnik) {
         SimpleJdbcInsert insertAction = new SimpleJdbcInsert(jdbcTemplate);
-        insertAction.withTableName("zawodnik").usingColumns("nr_zawodnika", "imie", "nazwisko", "plec", "pesel", "email", "data_dolaczenia", "kraj_pochodzenia", "dyscyplina", "rekord_życiowy","waga", "nr_klubu", "id_adresu");
-
+        insertAction.withTableName("zawodnicy").usingColumns("nr_zawodnika", "imie", "nazwisko", "plec", "pesel", "email", "data_dolaczenia", "kraj_pochodzenia", "dyscyplina", "rekord_zyciowy","waga","wzrost" ,"nr_klubu", "id_adresu");
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(zawodnik);
         insertAction.execute(param);
     }

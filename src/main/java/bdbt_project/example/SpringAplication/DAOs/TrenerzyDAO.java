@@ -34,8 +34,8 @@ public class TrenerzyDAO {
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Trener trener) {
         SimpleJdbcInsert insertAction = new SimpleJdbcInsert(jdbcTemplate);
-        insertAction.withTableName("trener").usingColumns("nr_pracownika", "imie", "nazwisko", "dyscyplina", "email", "telefon", "nr_klubu", "stopien_zaawansowania");
-
+        insertAction.withTableName("trenerzy").usingColumns("nr_pracownika", "imie", "nazwisko", "dyscyplina", "email", "telefon", "stopien_zaawansowania");
+        insertAction.withTableName("pracownicy").usingColumns();
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(trener);
         insertAction.execute(param);
     }
@@ -55,9 +55,8 @@ public class TrenerzyDAO {
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
         String sql = "DELETE FROM Trenerzy WHERE nr_pracownika = ?";
-        String sql1 = "DELETE FROM Pracownicy WHERE nr_pracownika = ?";
         jdbcTemplate.update(sql,id);
-        jdbcTemplate.update(sql1,id);
+
     }
 
 }

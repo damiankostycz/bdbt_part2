@@ -6,7 +6,7 @@ public class Zawodnik {
     private int nrZawodnika;
     private String imie;
     private String nazwisko;
-    private char plec;
+    private String plec;
     private String pesel;
     private String email;
     private LocalDate dataDolaczenia;
@@ -14,12 +14,13 @@ public class Zawodnik {
     private String dyscyplina;
     private String rekordZyciowy;
     private String waga;
+    private int wzrost;
     private int nrKlubu;
     private int idAdresu;
 
     public Zawodnik(){}
 
-    public Zawodnik(int nrZawodnika, String imie, String nazwisko, char plec, String pesel, String email, LocalDate dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga, int nrKlubu, int idAdresu) {
+    public Zawodnik(int nrZawodnika, String imie, String nazwisko, String plec, String pesel, String email, LocalDate dataDolaczenia, String krajPochodzenia, String dyscyplina, String rekordZyciowy, String waga,int wzrost, int nrKlubu, int idAdresu) {
         this.nrZawodnika = nrZawodnika;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -31,6 +32,7 @@ public class Zawodnik {
         this.dyscyplina = dyscyplina;
         this.rekordZyciowy = rekordZyciowy;
         this.waga = waga;
+        this.wzrost = wzrost;
         this.nrKlubu = nrKlubu;
         this.idAdresu = idAdresu;
     }
@@ -59,11 +61,11 @@ public class Zawodnik {
         this.nazwisko = nazwisko;
     }
 
-    public char getPlec() {
+    public String getPlec() {
         return plec;
     }
 
-    public void setPlec(char plec) {
+    public void setPlec(String plec) {
         this.plec = plec;
     }
 
@@ -123,6 +125,14 @@ public class Zawodnik {
         this.waga = waga;
     }
 
+    public int getWzrost() {
+        return wzrost;
+    }
+
+    public void setWzrost(int wzrost) {
+        this.wzrost = wzrost;
+    }
+
     public int getNrKlubu() {
         return nrKlubu;
     }
@@ -153,6 +163,7 @@ public class Zawodnik {
                 ", dyscyplina='" + dyscyplina + '\'' +
                 ", rekordZyciowy='" + rekordZyciowy + '\'' +
                 ", waga='" + waga + '\'' +
+                ", wzrost='" + wzrost + '\'' +
                 ", nrKlubu=" + nrKlubu +
                 ", idAdresu=" + idAdresu +
                 '}';

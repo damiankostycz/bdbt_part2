@@ -12,7 +12,7 @@ public class Trener {
 
     public Trener(){}
 
-    public Trener(int id, String imie, String nazwisko, String dyscyplina, String email, String telefon, String stopien_zaawansowania, int nrKlubu, String stopienZaawansowania) {
+    public Trener(int id, String imie, String nazwisko, String dyscyplina, String email, String telefon, int nrKlubu, String stopienZaawansowania) {
         this.nrPracownika = id;
         this.imie = imie;
         this.nazwisko = nazwisko;

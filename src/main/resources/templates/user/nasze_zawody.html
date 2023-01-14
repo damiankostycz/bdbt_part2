@@ -5,7 +5,7 @@
     <title>Nasze zawody</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{/css/main_user.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
     <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
 
@@ -20,6 +20,7 @@
             <a th:href="@{/nasze_zawody}" class="btn btn-primary btn-sm">Nasze zawody</a>
             <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
             <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
+            <a th:href="@{/pracownicy}" class="btn btn-dark btn-sm">Pracownicy</a>
         </div>
     </div>
     <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,75 +43,123 @@
 
 <div class="container">
     <div class="text-center" style="color: black" >
+        <form th:action="@{/addZawody}" th:object="${zawodyAdd}" method="post">
         <table class="table-center table table-striped">
             <thead>
-            <tr>
-                <th>Nr_zawodów</th>
-                <th>Data</th>
-                <th>Liczba widzów</th>
-                <th>Złote medale</th>
-                <th>Srebrne medale</th>
-                <th>Brązowe medale</th>
-                <th>Numer klubu</th>
-                <th>Opcje</th>
-            </tr>
+                <tr>
+                    <th>Nr_zawodów</th>
+                    <th>Data</th>
+                    <th>Liczba widzów</th>
+                    <th>Złote medale</th>
+                    <th>Srebrne medale</th>
+                    <th>Brązowe medale</th>
+                    <th>Numer klubu</th>
+                    <th>Opcje</th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="zawody: ${zawody}">
-                <td th:text="${zawody.nrZawodow}"></td>
-                <td th:text="${zawody.data}"></td>
-                <td th:text="${zawody.liczbaBiletow}"></td>
-                <td th:text="${zawody.zloteMedale}"></td>
-                <td th:text="${zawody.srebrneMedale}"></td>
-                <td th:text="${zawody.brazoweMedale}"></td>
-                <td th:text="${zawody.nrKlubu}"></td>
-                <td>
-                    <a class="btn btn-outline-info">Edytuj</a>
-                    <a th:href="@{'/delete_zawody/' + ${zawody.nrZawodow}}" class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
-                </td>
-            </tr>
-            <form action="#" th:action="@{/addZawody}" th:object="${zawody}" method="post">
-                <tr id="myForm" style="display:none">
-                        <td>
-                            <label for="nr_zawodow"></label>
-                            <input id="nr_zawodow" type="text"   autocomplete="on" class="form-control-sm" required>
-                        </td>
-                        <td>
-                            <label for="data"></label>
-                            <input type="text" id="data" autocomplete="on" class="form-control-sm" required>
-                        </td>
-                        <td>
-                            <label for="liczba_biletow"></label>
-                            <input type="text" id="liczba_biletow"  autocomplete="on" class="form-control-sm" required>
-                        </td>
-                        <td>
-                            <label for="zlote_medale"></label>
-                            <input type="text" id="zlote_medale" autocomplete="on" class="form-control-sm" required>
-                        </td>
-                        <td>
-                            <label for="srebrne_medale"></label>
-                            <input type="text" id="srebrne_medale" autocomplete="on" class="form-control-sm" required>
-                        </td>
-                        <td>
-                            <label for="brazowe_medale"></label>
-                            <input type="text" id="brazowe_medale" autocomplete="on" class="form-control-sm" required>
-                        </td>
-                        <td>
-                            <label for="nr_klubu"></label>
-                            <input type="text" id="nr_klubu" autocomplete="on" class="form-control-sm" required>
-                        </td>
-                        <td>
-                            <button class="btn btn-outline-success" type="submit"> Zapisz </button>
-                        </td>
-                    </tr>
-            </form>
-            </tbody>
-        </table>
+                <tr th:each="zawody: ${zawody}">
+                    <td th:text="${zawody.nrZawodow}"></td>
+                    <td th:text="${zawody.data}"></td>
+                    <td th:text="${zawody.liczbaBiletow}"></td>
+                    <td th:text="${zawody.zloteMedale}"></td>
+                    <td th:text="${zawody.srebrneMedale}"></td>
+                    <td th:text="${zawody.brazoweMedale}"></td>
+                    <td th:text="${zawody.nrKlubu}"></td>
+                    <td>
+                        <a class="btn btn-outline-info" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
+                        <a class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
+                        <a style="display: none" th:href="@{'/delete_zawody/' + ${zawody.nrZawodow}}" id="confirmBtn"></a>
+                    </td>
+                </tr>
+                    <tr id="myForm" style="display:none">
+                            <td>
+                                <label for="nr_zawodow"></label>
+                                <input id="nr_zawodow" type="text" th:field="*{nrZawodow}"  autocomplete="on" class="form-control-sm" required>
+                            </td>
+                            <td>
+                                <label for="data"></label>
+                                <input type="date" id="data" th:field="*{data}" autocomplete="on" class="form-control-sm" required>
+                            </td>
+                            <td>
+                                <label for="liczba_biletow"></label>
+                                <input type="text" id="liczba_biletow" th:field="*{liczbaBiletow}"  autocomplete="on" class="form-control-sm" required>
+                            </td>
+                            <td>
+                                <label for="zlote_medale"></label>
+                                <input type="text" id="zlote_medale" th:field="*{zloteMedale}" autocomplete="on" class="form-control-sm" required>
+                            </td>
+                            <td>
+                                <label for="srebrne_medale"></label>
+                                <input type="text" id="srebrne_medale" th:field="*{srebrneMedale}" autocomplete="on" class="form-control-sm" required>
+                            </td>
+                            <td>
+                                <label for="brazowe_medale"></label>
+                                <input type="text" id="brazowe_medale" th:field="*{brazoweMedale}" autocomplete="on" class="form-control-sm" required>
+                            </td>
+                            <td>
+                                <label for="nr_klubu"></label>
+                                <input type="text" id="nr_klubu" th:field="*{nrKlubu}" autocomplete="on" class="form-control-sm" required>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-success" type="submit"> Zapisz </button>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </form>
 
 
         <button class="btn btn-outline-info center" id="addButton" onclick="showHideRow()"> Dodaj </button>
     </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="popover" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <label for="nrZawodow"> Nr zawodow</label>
+                        <input type="text" id="nrZawodow">
+                    </div>
+                    <div class="col">
+                        <label for="Data1"> Data</label>
+                        <input type="date" id="Data1">
+                    </div>
+                </div>
+                <div class="row">Medale: </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="zloteMedale">Złote</label>
+                        <input type="number" id="zloteMedale">
+                    </div>
+                    <div class="col">
+                        <label for="srebrneMedale">Srebrne</label>
+                        <input type="number" id="srebrneMedale">
+                    </div>
+                    <div class="col">
+                        <label for="brazoweMedaale">Brązowe</label>
+                        <input type="number" id="brazoweMedaale">
+                    </div>
+                    <div class="col">
+                        <label for="nrKlubu">Nr Klubu</label>
+                        <input type="number" id="nrKlubu">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Edytuj</button>
+                <button type="button" class="btn btn-primary">Anuluj</button>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

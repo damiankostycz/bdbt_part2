@@ -3,9 +3,9 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
-    <title>Trenerzy i sekcje</title>
+    <title>Trenerzy User</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{/css/main_user.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
     <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
 
@@ -19,6 +19,8 @@
             <a th:href="@{/nasze_zawody}" class="btn btn-dark btn-sm">Nasze zawody</a>
             <a th:href="@{/trenerzy}" class="btn btn-primary btn-sm">Trenerzy i sekcje</a>
             <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
+            <a th:href="@{/pracownicy}" class="btn btn-dark btn-sm">Pracownicy</a>
+
         </div>
     </div>
     <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,10 +38,11 @@
 
 <div class="container">
     <div class="text-center" style="color: black" >
+        <form th:action="@{/addTrener}" th:object="${trenerAdd}" method="post">
         <table class="table-center table table-striped">
             <thead>
             <tr>
-                <th>id_trenera</th>
+                <th>Nr pracownika</th>
                 <th>Imie</th>
                 <th>Nazwisko</th>
                 <th>Dyscyplina</th>
@@ -47,8 +50,9 @@
                 <th>Telefon</th>
                 <th>Nr klubu</th>
                 <th>Stopień zaawansowania</th>
+                <th>Nr pracownika</th>
                 <th>Opcje</th>
-                <th>     <i class="fa-regular fa-pen-to-square"></i>
+                <th>
                 </th>
 
             </tr>
@@ -65,52 +69,55 @@
                 <td th:text="${trener.stopienZaawansowania}"></td>
                 <td>
                     <a class="btn btn-outline-info">Edytuj</a>
-                    <a th:href="@{'/delete_trenerzy/' + ${trener.nrPracownika}}" class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
+                    <a class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
+                    <a style="display: none" th:href="@{'/delete_trener/' + ${trener.nrPracownika}}" id="confirmBtn"></a>
                 </td>
             </tr>
-            <form action="#" th:action="@{/addZawody}" th:object="${zawody}" method="post">
                 <tr id="myForm" style="display:none">
                     <td>
                         <label for="id_trenera"></label>
-                        <input id="id_trenera" type="text"   autocomplete="on" class="form-control-sm" required>
+                        <input type="number" id="id_trenera" th:field="*{nrPracownika}" class="form-control-sm" required>
                     </td>
                     <td>
                         <label for="Imie"></label>
-                        <input type="text" id="Imie" autocomplete="on" class="form-control-sm" required>
+                        <input type="text" id="Imie" th:field="*{imie}" class="form-control-sm" required>
                     </td>
                     <td>
                         <label for="Nazwisko"></label>
-                        <input type="text" id="Nazwisko"  autocomplete="on" class="form-control-sm" required>
+                        <input type="text" id="Nazwisko" th:field="*{nazwisko}" class="form-control-sm" required>
                     </td>
                     <td>
                         <label for="Dyscyplina"></label>
-                        <input type="text" id="Dyscyplina" autocomplete="on" class="form-control-sm" required>
+                        <input type="text" id="Dyscyplina" th:field="*{dyscyplina}" class="form-control-sm" required>
                     </td>
                     <td>
                         <label for="E-mail"></label>
-                        <input type="text" id="E-mail" autocomplete="on" class="form-control-sm" required>
+                        <input type="email" id="E-mail" th:field="*{email}" class="form-control-sm" required>
                     </td>
                     <td>
                         <label for="Telefon"></label>
-                        <input type="text" id="Telefon" autocomplete="on" class="form-control-sm" required>
+                        <input type="tel" id="Telefon" th:field="*{telefon}" class="form-control-sm" required size="9">
                     </td>
                     <td>
                         <label for="nr_klubu"></label>
-                        <input type="text" id="nr_klubu" autocomplete="on" class="form-control-sm" required>
+                        <input type="text" id="nr_klubu" th:field="*{nrKlubu}" class="form-control-sm" required>
                     </td>
                     <td>
                         <label for="stopien_zaawansowania"></label>
-                        <input type="text" id="stopien_zaawansowania" autocomplete="on" class="form-control-sm" required>
+                        <select id="stopien_zaawansowania" name="stopien_zaawansowania">
+                            <option value="początkujący">początkujący</option>
+                            <option value="średni">średni</option>
+                            <option value="zaawansowany">zaawansowany</option>
+                        </select>
                     </td>
                     <td>
                         <button class="btn btn-outline-success" type="submit"> Zapisz </button>
                     </td>
                 </tr>
-            </form>
             </tbody>
         </table>
+        </form>
         <button class="btn btn-outline-info center" onclick="showHideRow()"> Dodaj </button>
-
     </div>
 </div>
 

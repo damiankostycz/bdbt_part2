@@ -1,8 +1,10 @@
 package bdbt_project.example.SpringAplication;
 
+import bdbt_project.example.SpringAplication.DAOs.PracownicyDAO;
 import bdbt_project.example.SpringAplication.DAOs.TrenerzyDAO;
 import bdbt_project.example.SpringAplication.DAOs.ZawodnicyDAO;
 import bdbt_project.example.SpringAplication.DAOs.ZawodyDAO;
+import bdbt_project.example.SpringAplication.data_representation.Pracownik;
 import bdbt_project.example.SpringAplication.data_representation.Zawodnik;
 import bdbt_project.example.SpringAplication.data_representation.Zawody;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +23,7 @@ class SpringAplicationApplicationTests {
 	private ZawodnicyDAO daoZawodnicy;
 	private ZawodyDAO daoZawody;
 	private TrenerzyDAO daoTrenerzy;
+	private PracownicyDAO daoPracownicy;
 
 	@BeforeEach
 	void setUp(){
@@ -33,6 +36,7 @@ class SpringAplicationApplicationTests {
 		daoZawodnicy = new ZawodnicyDAO(new JdbcTemplate(dataSource));
 		daoZawody = new ZawodyDAO(new JdbcTemplate(dataSource));
 		daoTrenerzy = new TrenerzyDAO(new JdbcTemplate(dataSource));
+		daoPracownicy = new PracownicyDAO(new JdbcTemplate(dataSource));
 	}
 
 	@Test
@@ -50,8 +54,14 @@ class SpringAplicationApplicationTests {
 	}
 	@Test
 	void addTest(){
-		Zawody zawody = new Zawody(5,LocalDate.now(), 943, 0,2,2,1);
+		Zawody zawody = new Zawody(6,LocalDate.now(), 568, 1,2,0,1);
 		daoZawody.save(zawody);
+
+	}
+	@Test
+	void addTestPracownik() {
+		Pracownik pracownik = new Pracownik(3, "Wiktor", "Serek", "M", "02365145256", "125485475", "wikotrs@wp.pl", LocalDate.now(), 1);
+		daoPracownicy.save(pracownik);
 	}
 	@Test
 	void contextLoads() {

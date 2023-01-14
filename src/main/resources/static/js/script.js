@@ -26,8 +26,14 @@ function closeForm() {
 }
 
 function deleteConfirmation(){
-    if(confirm("Czy na pewno chcesz usunąć wybrany element?"))
-        alert("Dane zostały usunięte")
+    const btn = document.getElementById("confirmBtn")
+    if(confirm("Czy na pewno chcesz usunąć wybrany element?")){
+        btn.click();
+        alert("Dane zostały usunięte")}
+    else {
+        alert("Anulowano usunięcie")
+    }
+
 }
 
 function showHideRow() {
@@ -41,6 +47,8 @@ function showHideRow() {
         btn.textContent = "Dodaj";
     }
 }
+
+
 
 
 
