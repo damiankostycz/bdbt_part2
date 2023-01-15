@@ -41,7 +41,7 @@
 
 </div>
 
-<div class="container">
+<div class="container tabela" >
     <div class="text-center" style="color: black" >
         <form th:action="@{/addZawody}" th:object="${zawodyAdd}" method="post">
         <table class="table-center table table-striped">
@@ -67,7 +67,7 @@
                     <td th:text="${zawody.brazoweMedale}"></td>
                     <td th:text="${zawody.nrKlubu}"></td>
                     <td>
-                        <a class="btn btn-outline-info" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
+                        <a th:href="@{'/nasze_zawody/' + ${zawody.nrZawodow}}" class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
                         <a class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
                         <a style="display: none" th:href="@{'/delete_zawody/' + ${zawody.nrZawodow}}" id="confirmBtn"></a>
                     </td>
@@ -82,8 +82,8 @@
                                 <input type="date" id="data" th:field="*{data}" autocomplete="on" class="form-control-sm" required>
                             </td>
                             <td>
-                                <label for="liczba_biletow"></label>
-                                <input type="text" id="liczba_biletow" th:field="*{liczbaBiletow}"  autocomplete="on" class="form-control-sm" required>
+                                <label for="liczbaBiletow"></label>
+                                <input type="text" id="liczbaBiletow" th:field="*{liczbaBiletow}" autocomplete="on" class="form-control-sm" required>
                             </td>
                             <td>
                                 <label for="zlote_medale"></label>
@@ -116,51 +116,56 @@
 </div>
 
 <!-- Modal -->
+<form th:action="@{/updateZawody}" th:object="${zawodyAdd}" method="post">
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="popover" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edytuj</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
                         <label for="nrZawodow"> Nr zawodow</label>
-                        <input type="text" id="nrZawodow">
+                        <input class="getData" type="text" th:field="*{nrZawodow}" id="nrZawodow">
                     </div>
                     <div class="col">
                         <label for="Data1"> Data</label>
-                        <input type="date" id="Data1">
+                        <input class="getData" type="date" th:field="*{data}" id="Data1">
+                    </div>
+                    <div class="col">
+                        <label for="bilety"> Data</label>
+                        <input class="getData" type="text" th:field="*{liczbaBiletow}" id="bilety">
                     </div>
                 </div>
                 <div class="row">Medale: </div>
                 <div class="row">
                     <div class="col">
                         <label for="zloteMedale">Złote</label>
-                        <input type="number" id="zloteMedale">
+                        <input class="getData" type="number" th:field="*{zloteMedale}" id="zloteMedale">
                     </div>
                     <div class="col">
                         <label for="srebrneMedale">Srebrne</label>
-                        <input type="number" id="srebrneMedale">
+                        <input class="getData"type="number" th:field="*{srebrneMedale}" id="srebrneMedale">
                     </div>
                     <div class="col">
                         <label for="brazoweMedaale">Brązowe</label>
-                        <input type="number" id="brazoweMedaale">
+                        <input class="getData" type="number" th:field="*{brazoweMedale}" id="brazoweMedaale">
                     </div>
                     <div class="col">
                         <label for="nrKlubu">Nr Klubu</label>
-                        <input type="number" id="nrKlubu">
+                        <input class="getData" type="number"th:field="*{nrKlubu}" id="nrKlubu">
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Edytuj</button>
-                <button type="button" class="btn btn-primary">Anuluj</button>
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Potwierdz</button>
             </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 
 
 <!-- footstop -->

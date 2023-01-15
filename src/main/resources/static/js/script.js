@@ -1,29 +1,4 @@
-function successfullyLogout(){
-    alert("You have been successfully logged out");
-}
 
-function showLoginWindow() {
-    // show the login window
-    document.getElementById('login-window').style.display = 'block';
-}
-
-function hideLoginWindow() {
-    // hide the login window
-    document.getElementById('login-window').style.display = 'none';
-}
-
-function logout(){
-    if(confirm("Czy na pewno chcesz się wylogować?"))
-        alert("Zostałeś wylogowany")
-}
-
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-}
 
 function deleteConfirmation(){
     const btn = document.getElementById("confirmBtn")
@@ -48,6 +23,31 @@ function showHideRow() {
     }
 }
 
+
+const editButtons = document.getElementsByClassName("editBtn")
+for(let x=0; x<editButtons.length; x++){
+    editButtons[x].addEventListener("click", function(e){
+        let temp = e.target.parentNode.parentNode;
+        const list = temp.getElementsByTagName("td");
+        const input = document.getElementsByClassName("getData");
+        for (let i = 0; i < list.length; i++) {
+            input[i].value = list[i].textContent;
+            }
+        });
+    }
+
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+)(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    const tbody = table.querySelector('tbody');
+    Array.from(tbody.querySelectorAll('tr'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => tbody.appendChild(tr) );})));
 
 
 

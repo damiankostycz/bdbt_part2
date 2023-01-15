@@ -5,6 +5,7 @@ import bdbt_project.example.SpringAplication.DAOs.TrenerzyDAO;
 import bdbt_project.example.SpringAplication.DAOs.ZawodnicyDAO;
 import bdbt_project.example.SpringAplication.DAOs.ZawodyDAO;
 import bdbt_project.example.SpringAplication.data_representation.Pracownik;
+import bdbt_project.example.SpringAplication.data_representation.Trener;
 import bdbt_project.example.SpringAplication.data_representation.Zawodnik;
 import bdbt_project.example.SpringAplication.data_representation.Zawody;
 import org.junit.jupiter.api.BeforeEach;
@@ -64,7 +65,28 @@ class SpringAplicationApplicationTests {
 		daoPracownicy.save(pracownik);
 	}
 	@Test
-	void contextLoads() {
+	void addTestTrener(){
+		Trener trener = new Trener(3, "Serek", "Wiktor", "gimnastyka", "123", "569874569", 1, "sredni" );
 	}
+	@Test
+	void getTestZawody() {
+		int id = 4;
+		Zawody zawody = daoZawody.getZawody(id);
+		assertNotNull(zawody);
+	}
+	@Test
+	void updateTestZawody(){
+		Zawody zawody = new Zawody();
+		zawody.setNrZawodow(3);
+		zawody.setData(LocalDate.now());
+		zawody.setLiczbaBiletow(12);
+		zawody.setZloteMedale(1);
+		zawody.setSrebrneMedale(0);
+		zawody.setBrazoweMedale(0);
+		zawody.setNrKlubu(1);
+		daoZawody.updateZawody(zawody);
+
+	}
+
 
 }

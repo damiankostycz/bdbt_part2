@@ -24,9 +24,13 @@ public class TrenerzyDAO {
 
     public List<Trener> list(){
         String sql = "select p.nr_pracownika, p.Imie, p.Nazwisko, p.Telefon, p.Email,p.Nr_klubu, t.Dyscyplina, t.Stopien_zaawansowania from Pracownicy p join Trenerzy t on p.Nr_pracownika = t.Nr_pracownika";
-
         List<Trener> trenerzyList = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Trener.class));
+        return trenerzyList;
+    }
 
+    public List<Trener> listUser(){
+        String sql = "select * from Trenerzy ";
+        List<Trener> trenerzyList = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Trener.class));
         return trenerzyList;
     }
 
@@ -35,7 +39,6 @@ public class TrenerzyDAO {
     public void save(Trener trener) {
         SimpleJdbcInsert insertAction = new SimpleJdbcInsert(jdbcTemplate);
         insertAction.withTableName("trenerzy").usingColumns("nr_pracownika", "imie", "nazwisko", "dyscyplina", "email", "telefon", "stopien_zaawansowania");
-        insertAction.withTableName("pracownicy").usingColumns();
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(trener);
         insertAction.execute(param);
     }
@@ -49,6 +52,7 @@ public class TrenerzyDAO {
 
     /* Update – aktualizacja danych */
     public void update(Trener sale) {
+
     }
 
 

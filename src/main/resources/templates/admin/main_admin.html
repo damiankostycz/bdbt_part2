@@ -2,39 +2,67 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Main Admin Page</title>
+    <title>Klub Lekkoatletyczny</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v6.2.1/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
 
 </head>
-<body>
+
+<body th:style="'background: url(https://wallpapercave.com/wp/wp2089569.jpg) no-repeat center center fixed; '">
+
+
+
+
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-link  shadow-5-strong">
     <div class="container">
-        <a th:href="@{/}" class="navbar-brand font-weight-bold p1">Klub Lekkoatletyczny</a>
-        <div>
-            <a th:href="@{/nasze_zawody}" class="btn btn-dark btn-sm">Nasze zawody</a>
-            <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
-            <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
-            <a th:href="@{/pracownicy}" class="btn btn-dark btn-sm">Pracownicy</a>
+        <a class="navbar-brand font-weight-bold p1"  href="/">Klub Lekkoatletyczny</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a th:href="@{/nasze_zawody}" class="nav-link">Nasze zawody</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/trenerzy}" class="nav-link">Trenerzy i sekcje</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/zawodnicy}" class="nav-link">Zawodnicy</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/pracownicy}" class="nav-link">Pracownicy</a>
+                </li>
+                <li class="nav-item active">
+                    <a th:href="@{/main_admin}" class="nav-link">Strona Admina</a>
+                </li>
+            </ul>
         </div>
     </div>
-    <button class="btn btn-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-circle"></i>
-        <span sec:authorize="isAuthenticated()">
-                    <span sec:authentication="name"></span>
-                </span>
-    </button>
+    <span sec:authorize="isAuthenticated()" >
+        <button class="btn btn-outline-primary navbar-brand ml-auto">
+            <i class="fas fa-user-circle"></i>
+            <span sec:authentication="name"></span>
+        </button>
+    </span>
+    <span sec:authorize="!isAuthenticated()" >
+            <a th:href="@{/login}" class="btn btn-success navbar-brand ml-auto" role="button" aria-pressed="false">Zaloguj</a>
+        </span>
     <form th:action="@{/logout}" method="post">
-        <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
+            <span sec:authorize="isAuthenticated()" >
+                <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
+            </span>
     </form>
 </nav>
 
-<h1>WITAJ NA STRONIE ADMINA</h1>
+
+<div class="center" style="color:aliceblue;">
+    <h1 style="font-family: Impact, fantasy" > WITAMY! </h1>
+    <p>To oficjalna strona naszego Klubu Lekkoatletycznego.</p>
+    <p>Jeśli chcesz zobaczyć więcej musisz się zalogować.</p>
+</div>
 
 <!-- footstop -->
 <div class="footer flx">
@@ -61,7 +89,8 @@
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/script.js}"></script>
-<script th:src="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}" integrity="sha384-DfX"></script>
+<script th:if="${param.logout}"> alert('Zostałeś wylogowany');</script>
+
 
 </body>
 </html>

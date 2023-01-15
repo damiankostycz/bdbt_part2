@@ -38,7 +38,7 @@
 
 
 
-<div class="container">
+<div class="container tabela" >
   <div class="text-center" style="color: black" >
     <form action="#" th:action="@{/addZawodnik}" th:object="${zawodnikAdd}" method="post">
     <table class="table-center table table-striped">
@@ -57,7 +57,6 @@
         <th>Waga [kg]</th>
         <th>Wzrost [cm]</th>
         <th>Nr klubu</th>
-        <th>Id adresu</th>
         <th>Opcje</th>
 
       </tr>
@@ -77,9 +76,8 @@
         <td th:text="${zawodnik.waga}"></td>
         <td th:text="${zawodnik.wzrost}"></td>
         <td th:text="${zawodnik.nrKlubu}"></td>
-        <td th:text="${zawodnik.idAdresu}"></td>
         <td>
-          <a class="btn btn-outline-info">Edytuj</a>
+          <a th:href="@{'/zawodnicy/' + ${zawodnik.nrZawodnika}}" class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
           <a class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
           <a style="display: none" th:href="@{'/delete_zawodnik/' + ${zawodnik.nrZawodnika}}" id="confirmBtn"></a>
         </td>
@@ -140,10 +138,6 @@
             <label for="nr_klubu"></label>
             <input type="text" id="nr_klubu" th:field="*{nrKlubu}" class="form-control-sm" required>
           </td>
-          <td>
-            <label for="id_adresu"></label>
-            <input type="number" id="id_adresu" th:field="*{idAdresu}" class="form-control-sm" required>
-          </td>
 
           <td>
             <button class="btn btn-outline-success" type="submit"> Zapisz </button>
@@ -154,8 +148,91 @@
     </form>
     <button class="btn btn-outline-info center" onclick="showHideRow()"> Dodaj </button>
   </div>
-
 </div>
+
+
+<!-- Modal -->
+<form th:action="@{/updateZawodnicy}" th:object="${zawodnikAdd}" method="post">
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="popover" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Edytuj</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <label for="nrpracownika"> Nr zawodnika</label>
+              <input class="getData" type="text" th:field="*{nrZawodnika}" id="nrpracownika">
+            </div>
+            <div class="col">
+              <label for="Imie1"> Imie</label>
+              <input class="getData" type="text" th:field="*{imie}" id="Imie1">
+            </div>
+            <div class="col">
+              <label for="nazwisko1"> nazwisko</label>
+              <input class="getData" type="text" th:field="*{nazwisko}" id="nazwisko1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="plec1">Płeć</label>
+              <input class="getData" type="text" id="plec1" size="1" th:field="*{plec}" placeholder="Wpisz M lub K">
+            </div>
+            <div class="col">
+              <label for="pesel1">Pesel</label>
+              <input class="getData" type="text" th:field="*{pesel}" id="pesel1" size="11">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="E-mail1">E-mail</label>
+              <input class="getData" type="email" th:field="*{email}" id="E-mail1">
+            </div>
+            <div class="col">
+              <label for="date">Data dołączenia</label>
+              <input class="getData" type="date" th:field="*{dataDolaczenia}" id="date">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="krajPochodzenia">Kraj pochodzenia</label>
+              <input class="getData" type="text" th:field="*{krajPochodzenia}" id="krajPochodzenia">
+            </div>
+            <div class="col">
+              <label for="dyscyplina1">Dyscyplina</label>
+              <input class="getData" type="text" th:field="*{dyscyplina}" id="dyscyplina1">
+            </div>
+            <div class="col">
+              <label for="rekordZyciowy">Rekord życiowy</label>
+              <input class="getData" type="text" th:field="*{rekordZyciowy}"  id="rekordZyciowy">
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="waga1">Waga</label>
+                <input class="getData" type="text" th:field="*{waga}" id="waga1">
+              </div>
+              <div class="col">
+                <label for="wzrost1">Wzrost</label>
+                <input class="getData" type="text" th:field="*{wzrost}" id="wzrost1">
+              </div>
+              <div class="col">
+                <label for="nrKlubu">Nr klubu</label>
+                <input class="getData" type="text" th:field="*{nrKlubu}" id="nrKlubu">
+              </div>
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Potwierdz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 
 <!-- footstop -->
 <div class="footer flx">

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -39,13 +40,19 @@ public class ZawodnicyDAO {
 
 
     /* Read – odczytywanie danych z bazy */
-    public Zawodnik get(int id) {
+    public Zawodnik getZawodnik(int id) {
         return null;
     }
 
 
     /* Update – aktualizacja danych */
-    public void update(Zawodnik sale) {
+    public void updateZawodnik(Zawodnik zawodnik) {
+        String sql = "UPDATE Zawodnicy SET nr_zawodnika= :nrZawodnika, imie= :imie, nazwisko=:nazwisko, plec= :plec, pesel= :pesel, " +
+                "email=:email, data_dolaczenia= :data_dolaczenia, kraj_pochodzenia= :krajPochodzenia," +
+                "dyscyplina=:dyscyplina, rekord_zyciowy=:rekordZyciowy, waga=:waga, wzrost=:wzrots,nr_klubu=:nrKlubu ";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(zawodnik);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+        template.update(sql, param);
     }
 
 

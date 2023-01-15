@@ -36,7 +36,7 @@
 
 
 
-<div class="container">
+<div class="container tabela" >
     <div class="text-center" style="color: black" >
         <form th:action="@{/addTrener}" th:object="${trenerAdd}" method="post">
         <table class="table-center table table-striped">
@@ -68,7 +68,7 @@
                 <td th:text="${trener.nrKlubu}"></td>
                 <td th:text="${trener.stopienZaawansowania}"></td>
                 <td>
-                    <a class="btn btn-outline-info">Edytuj</a>
+                    <a th:href="@{'/trenerzy/' + ${trener.nrPracownika}}" class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
                     <a class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
                     <a style="display: none" th:href="@{'/delete_trener/' + ${trener.nrPracownika}}" id="confirmBtn"></a>
                 </td>
@@ -120,6 +120,8 @@
         <button class="btn btn-outline-info center" onclick="showHideRow()"> Dodaj </button>
     </div>
 </div>
+
+
 
 <!-- footstop -->
 <div class="footer flx">

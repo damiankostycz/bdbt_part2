@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +33,7 @@ public class PracownicyDAO {
         /* Insert – wstawianie nowego wiersza do bazy */
         public void save(Pracownik pracownik) {
             SimpleJdbcInsert insertAction = new SimpleJdbcInsert(jdbcTemplate);
-            insertAction.withTableName("pracownicy").usingColumns("nr_pracownika", "imie", "nazwisko", "plec", "pesel", "email", "data_zatrudnienia", "nr_klubu");
+            insertAction.withTableName("pracownicy").usingColumns("nr_pracownika", "imie", "nazwisko", "plec", "pesel","telefon", "email", "data_zatrudnienia", "nr_klubu");
             BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pracownik);
             insertAction.execute(param);
         }
@@ -45,7 +46,12 @@ public class PracownicyDAO {
 
 
         /* Update – aktualizacja danych */
-        public void update(Zawodnik sale) {
+        public void update(Pracownik pracownik) {
+            String sql = "UPDATE Pracownicy SET nr_pracownika=:nrPracownika, imie=:imie, nazwisko=:nazwisko, plec=:plec, pesel=:pesel," +
+                    "telefon=:telefon,email=:email, data_zatrudnienia=:dataZatrudnienia, nr_klunu=:nrKlubu";
+            BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pracownik);
+            NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+            template.update(sql, param);
         }
 
 

@@ -32,7 +32,7 @@
 
 </nav>
 
-<div class="container">
+<div class="container tabela" >
   <div class="text-center" style="color: black" >
     <form th:action="@{/addPracownik}" th:object="${pracownikAdd}" method="post">
       <table class="table-center table table-striped">
@@ -65,7 +65,7 @@
           <td th:text="${pracownik.dataZatrudnienia}"></td>
           <td th:text="${pracownik.nrKlubu}"></td>
           <td>
-            <a class="btn btn-outline-info">Edytuj</a>
+            <a th:href="@{'/pracownicy/' + ${pracownik.nrPracownika}}" class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
             <a class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
             <a style="display: none" th:href="@{'/delete_pracownik/' + ${pracownik.nrPracownika}}" id="confirmBtn"></a>
 
@@ -97,7 +97,7 @@
           </td>
           <td>
             <label for="Telefon"></label>
-            <input type="tel" id="Telefon" th:field="*{telefon}" class="form-control-sm" required>
+            <input type="text" id="Telefon" th:field="*{telefon}" class="form-control-sm" required>
           </td>
           <td>
             <label for="E-mail"></label>
@@ -121,6 +121,70 @@
     <button class="btn btn-outline-info center" onclick="showHideRow()"> Dodaj </button>
   </div>
 </div>
+
+
+<!-- Modal -->
+<form th:action="@{/updatePracownicy}" th:object="${pracownikAdd}" method="post">
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="popover" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Edytuj</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <label for="nrpracownika1"> Nr pracownika</label>
+              <input class="getData" type="text" th:field="*{nrPracownika}" id="nrpracownika1">
+            </div>
+            <div class="col">
+              <label for="Imie1"> Imie</label>
+              <input class="getData" type="text" th:field="*{imie}" id="Imie1">
+            </div>
+            <div class="col">
+              <label for="nazwisko1"> nazwisko</label>
+              <input class="getData" type="text" th:field="*{nazwisko}" id="nazwisko1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="plec1">Płeć</label>
+              <input class="getData" type="text" id="plec1" size="1" th:field="*{plec}" placeholder="Wpisz M lub K">
+            </div>
+            <div class="col">
+              <label for="pesel1">Pesel</label>
+              <input class="getData" type="text" th:field="*{pesel}" id="pesel1" size="11">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="E-mail1">E-mail</label>
+              <input class="getData" type="email" th:field="*{email}" id="E-mail1">
+            </div>
+            <div class="col">
+              <label for="tel">Tel.</label>
+              <input class="getData" type="tel" th:field="*{telefon}" id="tel">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="date">Data zatrudnienia</label>
+              <input class="getData" type="date" id="date" th:field="*{dataZatrudnienia}" >
+            </div>
+              <div class="col">
+                <label for="nrKlubu">Nr klubu</label>
+                <input class="getData" type="text" id="nrKlubu" th:field="*{nrKlubu}" >
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Potwierdz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 
 <!-- footstop -->
 <div class="footer flx">

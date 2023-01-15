@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -162,4 +163,26 @@ class DashboardController {
     }
 
 
+    @RequestMapping(value = "/updateZawody", method = RequestMethod.POST)
+    public String updateZawody(@ModelAttribute("zawodyAdd") Zawody zawody){
+        zawodyDAO.updateZawody(zawody);
+        return "redirect:/nasze_zawody";
+    }
+
+    @RequestMapping(value = "/updateTrenerzy", method = RequestMethod.POST)
+    public String updateTrenerzy(@ModelAttribute("trenerzyAdd") Trener trener){
+        trenerzyDAO.update(trener);
+        return "redirect:/trenerzy";
+    }
+
+    @RequestMapping(value = "/updatePracownicy", method = RequestMethod.POST)
+    public String updatePracownicy(@ModelAttribute("pracownicyAdd") Pracownik pracownik){
+        pracownicyDAO.update(pracownik);
+        return "redirect:/pracownicy";
+    }
+    @RequestMapping(value = "/updateZawodnicy", method = RequestMethod.POST)
+    public String updateZawodnik(@ModelAttribute("zawodyAdd") Zawodnik zawodnik){
+        zawodnicyDAO.updateZawodnik(zawodnik);
+        return "redirect:/zawodnicy";
+    }
 }

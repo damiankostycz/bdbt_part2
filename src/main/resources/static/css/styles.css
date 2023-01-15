@@ -113,7 +113,8 @@
 }
 
 input{
-width: 100%;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .editForm{
@@ -123,5 +124,11 @@ width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.tabela{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    width: 100%;
+
 }
 

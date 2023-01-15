@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -39,13 +40,21 @@ public class ZawodyDAO {
 
 
     /* Read – odczytywanie danych z bazy */
-    public Zawody get(int id) {
-        return null;
+    public Zawody getZawody(int id) {
+        Object[] args = {id};
+        String sql = "SELECT * FROM Zawody WHERE nr_zawodow = " + args[0];
+        Zawody zawody = jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Zawody.class));
+
+        return zawody;
     }
 
 
     /* Update – aktualizacja danych */
-    public void update(Zawody sale) {
+    public void updateZawody(Zawody zawody) {
+        String sql = "UPDATE Zawody SET data=:data, liczba_biletow=:liczbaBiletow, zlote_medale=:zloteMedale, srebrne_medale=:srebrneMedale, brazowe_medale=:brazoweMedale, nr_klubu=:nrKlubu WHERE nr_zawodow=:nrZawodow";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(zawody);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+        template.update(sql, param);
     }
 
 
