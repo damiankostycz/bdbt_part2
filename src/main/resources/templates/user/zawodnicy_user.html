@@ -63,7 +63,6 @@
         <th>Waga [kg]</th>
         <th>Wzrost [cm]</th>
         <th>Nr klubu</th>
-        <th>Opcje</th>
 
       </tr>
       </thead>
@@ -82,9 +81,7 @@
         <td th:text="${zawodnik.waga}"></td>
         <td th:text="${zawodnik.wzrost}"></td>
         <td th:text="${zawodnik.nrKlubu}"></td>
-        <td>
-          <a th:href="@{'/zawodnicy/' + ${zawodnik.nrZawodnika}}" class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
-        </td>
+
       </tr>
         <tr id="myForm" style="display:none">
           <td>
