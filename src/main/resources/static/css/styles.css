@@ -116,6 +116,10 @@ input{
     width: 100%;
     border-radius: 5px;
 }
+select{
+    width: 100%;
+    border-radius: 5px;
+}
 
 .editForm{
     display: none;
@@ -125,10 +129,11 @@ input{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.tabela{
-    overflow-x: scroll;
-    overflow-y: scroll;
-    width: 100%;
 
+td{
+    min-width: fit-content;
 }
+
+
+
 

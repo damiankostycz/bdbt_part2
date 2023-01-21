@@ -39,17 +39,13 @@ public class ZawodnicyDAO {
     }
 
 
-    /* Read – odczytywanie danych z bazy */
-    public Zawodnik getZawodnik(int id) {
-        return null;
-    }
 
 
     /* Update – aktualizacja danych */
     public void updateZawodnik(Zawodnik zawodnik) {
-        String sql = "UPDATE Zawodnicy SET nr_zawodnika= :nrZawodnika, imie= :imie, nazwisko=:nazwisko, plec= :plec, pesel= :pesel, " +
-                "email=:email, data_dolaczenia= :data_dolaczenia, kraj_pochodzenia= :krajPochodzenia," +
-                "dyscyplina=:dyscyplina, rekord_zyciowy=:rekordZyciowy, waga=:waga, wzrost=:wzrots,nr_klubu=:nrKlubu ";
+        String sql = "UPDATE Zawodnicy SET imie= :imie, nazwisko=:nazwisko, plec=:plec, pesel=:pesel, " +
+                "email=:email, data_dolaczenia=:dataDolaczenia, kraj_pochodzenia=:krajPochodzenia," +
+                "dyscyplina=:dyscyplina, rekord_zyciowy=:rekordZyciowy, waga=:waga, wzrost=:wzrost,nr_klubu=:nrKlubu WHERE nr_zawodnika =:nrZawodnika";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(zawodnik);
         NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
         template.update(sql, param);

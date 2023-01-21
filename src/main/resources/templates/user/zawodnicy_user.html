@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8"/>
-  <title>Zawodnicy</title>
+  <title>Trenerzy i sekcje</title>
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
   <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
   <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
@@ -19,11 +19,10 @@
     <a class="navbar-brand font-weight-bold p1">Klub Lekkoatletyczny</a>
     <div>
       <div>
-        <a th:href="@{/main_admin}" class="btn btn-dark btn-sm">Strona Admina</a>
-        <a th:href="@{/nasze_zawody_admin}" class="btn btn-dark btn-sm">Nasze zawody</a>
-        <a th:href="@{/trenerzy_admin}" class="btn btn-dark btn-sm">Trenerzy</a>
-        <a th:href="@{/zawodnicy}" class="btn btn-primary btn-sm">Zawodnicy</a>
-        <a th:href="@{/pracownicy}" class="btn btn-dark btn-sm">Pracownicy</a>
+        <a th:href="@{/main_user}" class="btn btn-dark btn-sm">Strona główna</a>
+        <a th:href="@{/nasze_zawody_user}" class="btn btn-dark btn-sm">Nasze zawody</a>
+        <a th:href="@{/zawodnicy_user}" class="btn btn-primary btn-sm">Zawodnicy</a>
+        <a th:href="@{/trenerzy_user}" class="btn btn-dark btn-sm">Trenerzy</a>
       </div>
     </div>
   </div>
@@ -38,11 +37,16 @@
   </form>
 </nav>
 
+<div class="container">
+  <div class="center" style="color: black" >
+    <h1> Nasi podopieczni </h1>
+  </div>
 
+</div>
 
 <div class="container d-flex justify-content-center" >
   <div class="text-center" style="color: black" >
-    <form action="#" th:action="@{/addZawodnik}" th:object="${zawodnikAdd}" method="post">
+    <form action="#" th:action="@{/addZawodnikUser}" th:object="${zawodnikAddUser}" method="post">
       <table class="table-center table table-hover">
       <thead>
       <tr>
@@ -65,7 +69,7 @@
       </thead>
       <tbody>
       <tr th:each="zawodnik: ${zawodnicy}">
-        <td class="delete" th:text="${zawodnik.nrZawodnika}"></td>
+        <td th:text="${zawodnik.nrZawodnika}"></td>
         <td th:text="${zawodnik.imie}"></td>
         <td th:text="${zawodnik.nazwisko}"></td>
         <td th:text="${zawodnik.plec}"></td>
@@ -80,7 +84,6 @@
         <td th:text="${zawodnik.nrKlubu}"></td>
         <td>
           <a th:href="@{'/zawodnicy/' + ${zawodnik.nrZawodnika}}" class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
-          <a class="btn btn-outline-danger usunBtn" >Usuń</a>
         </td>
       </tr>
         <tr id="myForm" style="display:none">
@@ -90,7 +93,7 @@
           </td>
           <td>
             <label for="Imie"></label>
-            <input type="text" id="Imie" th:field="*{imie}" class="form-control-sm" style="width: auto" required>
+            <input type="text" id="Imie" th:field="*{imie}" class="form-control-sm" required>
           </td>
           <td>
             <label for="Nazwisko"></label>
@@ -153,7 +156,7 @@
 
 
 <!-- Modal -->
-<form th:action="@{/updateZawodnicy}" th:object="${zawodnikAdd}" method="post">
+<form th:action="@{/updateZawodnicyUser}" th:object="${zawodnikAddUser}" method="post">
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="popover" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -165,7 +168,7 @@
           <div class="row">
             <div class="col">
               <label for="nrpracownika"> Nr zawodnika</label>
-              <input class="getData" type="text" th:field="*{nrZawodnika}" id="nrpracownika" readonly>
+              <input class="getData" type="text" th:field="*{nrZawodnika}" id="nrpracownika">
             </div>
             <div class="col">
               <label for="Imie1"> Imie</label>
@@ -223,6 +226,8 @@
                 <input class="getData" type="text" th:field="*{nrKlubu}" id="nrKlubu">
               </div>
             </div>
+
+
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Potwierdz</button>
@@ -232,14 +237,6 @@
     </div>
   </div>
 </form>
-
-
-<form th:action="@{/delete_zawodnik}" method="post" th:object="${zawodnikAdd}">
-  <label for="confirmId"></label>
-      <input style="display: none" id="confirmId" th:field="*{nrZawodnika}">
-  <button style="display: none" id="confirmBtn" type="submit"></button>
-</form>
-
 
 <!-- footstop -->
 <div class="footer flx">

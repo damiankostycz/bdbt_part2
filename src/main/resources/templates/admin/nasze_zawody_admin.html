@@ -15,15 +15,16 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-        <a th:href="@{/}" class="navbar-brand font-weight-bold p1">Klub Lekkoatletyczny</a>
+        <a class="navbar-brand font-weight-bold p1">Klub Lekkoatletyczny</a>
         <div>
-            <a th:href="@{/nasze_zawody}" class="btn btn-primary btn-sm">Nasze zawody</a>
-            <a th:href="@{/trenerzy}" class="btn btn-dark btn-sm">Trenerzy i sekcje</a>
+            <a th:href="@{/main_admin}" class="btn btn-dark btn-sm">Strona Admina</a>
+            <a th:href="@{/nasze_zawody_admin}" class="btn btn-primary btn-sm">Nasze zawody</a>
+            <a th:href="@{/trenerzy_admin}" class="btn btn-dark btn-sm">Trenerzy</a>
             <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
             <a th:href="@{/pracownicy}" class="btn btn-dark btn-sm">Pracownicy</a>
         </div>
     </div>
-    <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-outline-primary navbar-brand ml-auto" type="button">
         <i class="fas fa-user-circle"></i>
         <span sec:authorize="isAuthenticated()">
                     <span sec:authentication="name"></span>
@@ -34,17 +35,11 @@
     </form>
 </nav>
 
-<div class="container">
-    <div class="center" style="color: black" >
-        <h1> Zawody w których braliśmy udział </h1>
-    </div>
 
-</div>
-
-<div class="container tabela" >
+<div class="container d-flex justify-content-center" >
     <div class="text-center" style="color: black" >
         <form th:action="@{/addZawody}" th:object="${zawodyAdd}" method="post">
-        <table class="table-center table table-striped">
+        <table class="table-center table table-hover">
             <thead>
                 <tr>
                     <th>Nr_zawodów</th>
@@ -59,7 +54,7 @@
             </thead>
             <tbody>
                 <tr th:each="zawody: ${zawody}">
-                    <td th:text="${zawody.nrZawodow}"></td>
+                    <td class="delete" th:text="${zawody.nrZawodow}"></td>
                     <td th:text="${zawody.data}"></td>
                     <td th:text="${zawody.liczbaBiletow}"></td>
                     <td th:text="${zawody.zloteMedale}"></td>
@@ -67,9 +62,8 @@
                     <td th:text="${zawody.brazoweMedale}"></td>
                     <td th:text="${zawody.nrKlubu}"></td>
                     <td>
-                        <a th:href="@{'/nasze_zawody/' + ${zawody.nrZawodow}}" class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
-                        <a class="btn btn-outline-danger" onclick="deleteConfirmation()">Usuń</a>
-                        <a style="display: none" th:href="@{'/delete_zawody/' + ${zawody.nrZawodow}}" id="confirmBtn"></a>
+                        <a class="btn btn-outline-info editBtn" id="editButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
+                        <a class="btn btn-outline-danger usunBtn" >Usuń</a>
                     </td>
                 </tr>
                     <tr id="myForm" style="display:none">
@@ -128,18 +122,19 @@
                 <div class="row">
                     <div class="col">
                         <label for="nrZawodow"> Nr zawodow</label>
-                        <input class="getData" type="text" th:field="*{nrZawodow}" id="nrZawodow">
+                        <input class="getData" type="text" th:field="*{nrZawodow}" id="nrZawodow" readonly>
                     </div>
                     <div class="col">
                         <label for="Data1"> Data</label>
                         <input class="getData" type="date" th:field="*{data}" id="Data1">
                     </div>
                     <div class="col">
-                        <label for="bilety"> Data</label>
+                        <label for="bilety"> Liczba biletów:</label>
                         <input class="getData" type="text" th:field="*{liczbaBiletow}" id="bilety">
                     </div>
                 </div>
-                <div class="row">Medale: </div>
+                <div class="row"></div>
+                <h5 class="row">Medale: </h5>
                 <div class="row">
                     <div class="col">
                         <label for="zloteMedale">Złote</label>
@@ -147,7 +142,7 @@
                     </div>
                     <div class="col">
                         <label for="srebrneMedale">Srebrne</label>
-                        <input class="getData"type="number" th:field="*{srebrneMedale}" id="srebrneMedale">
+                        <input class="getData" type="number" th:field="*{srebrneMedale}" id="srebrneMedale">
                     </div>
                     <div class="col">
                         <label for="brazoweMedaale">Brązowe</label>
@@ -155,7 +150,7 @@
                     </div>
                     <div class="col">
                         <label for="nrKlubu">Nr Klubu</label>
-                        <input class="getData" type="number"th:field="*{nrKlubu}" id="nrKlubu">
+                        <input class="getData" type="number" th:field="*{nrKlubu}" id="nrKlubu" readonly>
                     </div>
             </div>
             <div class="modal-footer">
@@ -167,6 +162,12 @@
 </div>
 </form>
 
+
+<form th:action="@{/delete_zawody}" method="post" th:object="${zawodyAdd}">
+    <label for="confirmId"></label>
+    <input style="display: none" id="confirmId" th:field="*{nrZawodow}">
+    <button style="display: none" id="confirmBtn" type="submit"></button>
+</form>
 
 <!-- footstop -->
 <div class="footer flx">

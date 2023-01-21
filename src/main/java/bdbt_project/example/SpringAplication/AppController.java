@@ -33,10 +33,13 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/main_admin").setViewName("admin/main_admin");
         registry.addViewController("/main_user").setViewName("user/main_user");
-        registry.addViewController("/nasze_zawody").setViewName("user/nasze_zawody");
-        registry.addViewController("/trenerzy").setViewName("user/trenerzy");
+        registry.addViewController("/nasze_zawody_user").setViewName("user/nasze_zawody_user");
+        registry.addViewController("/nasze_zawody_admin").setViewName("admin/nasze_zawody_admin");
+        registry.addViewController("/trenerzy_user").setViewName("user/trenerzy_user");
+        registry.addViewController("/trenerzy_admin").setViewName("admin/trenerzy_admin");
         registry.addViewController("/zawodnicy").setViewName("admin/zawodnicy");
-        registry.addViewController("/pracownicy").setViewName("/admin/pracownicy");
+        registry.addViewController("/pracownicy").setViewName("admin/pracownicy");
+        registry.addViewController("/zawodnicy_user").setViewName("user/zawodnicy_user");
     }
 }
 
@@ -53,6 +56,18 @@ class DashboardController {
     private PracownicyDAO pracownicyDAO;
     @RequestMapping("/main")
     public String defaultAfterLogin (HttpServletRequest request) {
+        if (request.isUserInRole("ADMIN")) {
+            return "redirect:/main_admin";
+        }
+        else if (request.isUserInRole("USER")) {
+            return "redirect:/main_user";
+        }
+        else return "redirect:/index";
+
+    }
+
+    @RequestMapping("/errorh")
+    public String defaultAfterError (HttpServletRequest request) {
         if (request.isUserInRole("ADMIN")) {
             return "redirect:/main_admin";
         }
@@ -83,6 +98,15 @@ class DashboardController {
 
         return "admin/zawodnicy";
     }
+    @RequestMapping("/zawodnicy_user")
+    public String viewMatchesZawodnicyUser(Model model){
+        List<Zawodnik> zawodnikList = zawodnicyDAO.list();
+        model.addAttribute("zawodnicy", zawodnikList);
+        Zawodnik zawodnik = new Zawodnik();
+        model.addAttribute("zawodnikAddUser", zawodnik);
+
+        return "user/zawodnicy_user";
+    }
 
     @RequestMapping("/pracownicy")
     public String viewMatchesPracownicy(Model model){
@@ -94,47 +118,61 @@ class DashboardController {
         return "admin/pracownicy";
     }
 
-    @RequestMapping("/trenerzy")
+    @RequestMapping("/trenerzy_admin")
     public String viewMatchesTrenerzy(Model model){
         List<Trener> trenerList = trenerzyDAO.list();
         model.addAttribute("trenerzy", trenerList);
         Trener trener = new Trener();
         model.addAttribute("trenerAdd", trener);
 
-        return "user/trenerzy";
+        return "admin/trenerzy_admin";
     }
 
-    @RequestMapping("/nasze_zawody")
+    @RequestMapping("/trenerzy_user")
+    public String viewMatchesTrenerzyUser(Model model){
+        List<Trener> trenerList = trenerzyDAO.listUser();
+        model.addAttribute("trenerzyUser", trenerList);
+        return "user/trenerzy_user";
+    }
+
+    @RequestMapping("/nasze_zawody_admin")
     public String viewMatchesZawody(Model model){
         List<Zawody> zawodyList = zawodyDAO.list();
         model.addAttribute("zawody", zawodyList);
         Zawody zawody = new Zawody();
         model.addAttribute("zawodyAdd",zawody);
 
-        return "user/nasze_zawody";
+        return "admin/nasze_zawody_admin";
+    }
+@RequestMapping("/nasze_zawody_user")
+    public String viewMatchesZawodyUser(Model model){
+        List<Zawody> zawodyList = zawodyDAO.list();
+        model.addAttribute("zawody", zawodyList);
+
+        return "user/nasze_zawody_user";
     }
 
-    @RequestMapping("/delete_trener/{id}")
-    public String deleteTrenerzy(@PathVariable(name = "id") int id){
-        trenerzyDAO.delete(id);
-        return "redirect:/trenerzy";
+    @RequestMapping(value = "/delete_trener",method = RequestMethod.POST)
+    public String deleteTrenerzy(@ModelAttribute("trenerzyAdd") Trener trener){
+        trenerzyDAO.delete(trener.getNrPracownika());
+        return "redirect:/trenerzy_admin";
 
     }
-    @RequestMapping("/delete_zawodnik/{id}")
-    public String deleteZawodnicy(@PathVariable(name = "id") int id){
-        zawodnicyDAO.delete(id);
+    @RequestMapping(value = "/delete_zawodnik",method = RequestMethod.POST)
+    public String deleteZawodnicy(@ModelAttribute("zawodnikAdd") Zawodnik zawodnik){
+        zawodnicyDAO.delete(zawodnik.getNrZawodnika());
         return "redirect:/zawodnicy";
 
     }
-    @RequestMapping("/delete_zawody/{id}")
-    public String deleteZawody(@PathVariable(name = "id") int id){
-        zawodyDAO.delete(id);
-        return "redirect:/nasze_zawody";
+    @RequestMapping(value = "/delete_zawody",method = RequestMethod.POST)
+    public String deleteZawody(@ModelAttribute("zawodyAdd") Zawody zawody){
+        zawodyDAO.delete(zawody.getNrZawodow());
+        return "redirect:/nasze_zawody_admin";
 
     }
-    @RequestMapping("/delete_pracownik/{id}")
-    public String deletePracownik(@PathVariable(name = "id") int id){
-        pracownicyDAO.delete(id);
+    @RequestMapping(value = "/delete_pracownik",method = RequestMethod.POST)
+    public String deletePracownik(@ModelAttribute("pracownikAdd") Pracownik pracownik){
+        pracownicyDAO.delete(pracownik.getNrPracownika());
         return "redirect:/pracownicy";
 
     }
@@ -143,18 +181,24 @@ class DashboardController {
     @RequestMapping(value = "/addZawody", method = RequestMethod.POST)
     public String addZawody(@ModelAttribute("zawody") Zawody zawody){
         zawodyDAO.save(zawody);
-        return "redirect:/nasze_zawody";
+        return "redirect:/nasze_zawody_admin";
     }
 
     @RequestMapping(value = "/addTrener", method = RequestMethod.POST)
     public String addTrener(@ModelAttribute("trener") Trener trener){
         trenerzyDAO.save(trener);
-        return "redirect:/trenerzy";
+        return "redirect:/trenerzy_admin";
     }
     @RequestMapping(value = "/addZawodnik", method = RequestMethod.POST)
     public String addZawodnik(@ModelAttribute("zawodnk") Zawodnik zawodnik){
         zawodnicyDAO.save(zawodnik);
         return "redirect:/zawodnicy";
+    }
+
+    @RequestMapping(value = "/addZawodnikUser", method = RequestMethod.POST)
+    public String addZawodnikUser(@ModelAttribute("zawodnk") Zawodnik zawodnik){
+        zawodnicyDAO.save(zawodnik);
+        return "redirect:/zawodnicy_user";
     }
     @RequestMapping(value = "/addPracownik", method = RequestMethod.POST)
     public String addPracownik(@ModelAttribute("pracownik") Pracownik pracownik){
@@ -166,13 +210,13 @@ class DashboardController {
     @RequestMapping(value = "/updateZawody", method = RequestMethod.POST)
     public String updateZawody(@ModelAttribute("zawodyAdd") Zawody zawody){
         zawodyDAO.updateZawody(zawody);
-        return "redirect:/nasze_zawody";
+        return "redirect:/nasze_zawody_admin";
     }
 
     @RequestMapping(value = "/updateTrenerzy", method = RequestMethod.POST)
     public String updateTrenerzy(@ModelAttribute("trenerzyAdd") Trener trener){
         trenerzyDAO.update(trener);
-        return "redirect:/trenerzy";
+        return "redirect:/trenerzy_admin";
     }
 
     @RequestMapping(value = "/updatePracownicy", method = RequestMethod.POST)
@@ -184,5 +228,11 @@ class DashboardController {
     public String updateZawodnik(@ModelAttribute("zawodyAdd") Zawodnik zawodnik){
         zawodnicyDAO.updateZawodnik(zawodnik);
         return "redirect:/zawodnicy";
+    }
+
+    @RequestMapping(value = "/updateZawodnicyUser", method = RequestMethod.POST)
+    public String updateZawodnikUser(@ModelAttribute("zawodnikAdd") Zawodnik zawodnik){
+        zawodnicyDAO.updateZawodnik(zawodnik);
+        return "redirect:/zawodnicy_user";
     }
 }

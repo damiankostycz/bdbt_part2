@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Trenerzy</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand font-weight-bold p1">Klub Lekkoatletyczny</a>
+        <div>
+            <a th:href="@{/main_admin}" class="btn btn-dark btn-sm">Strona Admina</a>
+            <a th:href="@{/nasze_zawody_admin}" class="btn btn-dark btn-sm">Nasze zawody</a>
+            <a th:href="@{/trenerzy_admin}" class="btn btn-primary btn-sm">Trenerzy</a>
+            <a th:href="@{/zawodnicy}" class="btn btn-dark btn-sm">Zawodnicy</a>
+            <a th:href="@{/pracownicy}" class="btn btn-dark btn-sm">Pracownicy</a>
+        </div>
+    </div>
+    <button class="btn btn-outline-primary navbar-brand ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-circle"></i>
+        <span sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name"></span>
+                </span>
+    </button>
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
+    </form>
+</nav>
+
+
+
+<div class="container d-flex justify-content-center" >
+    <div class="text-center" style="color: black" >
+        <form th:action="@{/addTrener}" th:object="${trenerAdd}" method="post">
+            <table class="table-center table table-hover">
+            <thead>
+            <tr>
+                <th>Stopień zaawansowania</th>
+                <th>Nr licencji</th>
+                <th>Data ważności</th>
+                <th>Dyscyplina</th>
+                <th>Czy szkolenie RKO</th>
+                <th>Nr pracownika</th>
+                <th>Opcje</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="trener: ${trenerzy}">
+                <td th:text="${trener.stopienZaawansowania}"></td>
+                <td th:text="${trener.nrLicencji}"></td>
+                <td th:text="${trener.dataWaznosciLicencji}"></td>
+                <td th:text="${trener.dyscyplina}"></td>
+                <td th:text="${trener.czySzkolenieRko}"></td>
+                <td class="delete" th:text="${trener.nrPracownika}"></td>
+                <td>
+                    <a th:href="@{'/trenerzy/' + ${trener.nrPracownika}}" class="btn btn-outline-info editBtn"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edytuj</a>
+                    <a class="btn btn-outline-danger usunBtn" >Usuń</a>
+                </td>
+            </tr>
+                <tr id="myForm" style="display:none">
+                    <td>
+                        <label for="stopien_zaawansowania"></label>
+                        <select th:field="*{stopienZaawansowania}" id="stopien_zaawansowania" name="stopien_zaawansowania">
+                            <option value="początkujący">początkujący</option>
+                            <option value="średni">średni</option>
+                            <option value="zaawansowany">zaawansowany</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="nrLicencji"></label>
+                        <input id="nrLicencji" type="text" th:field="*{nrLicencji}" class="form-control-sm" required>
+                    </td>
+                    <td>
+                        <label for="data"></label>
+                        <input id="data" type="date"  th:field="*{dataWaznosciLicencji}" class="form-control-sm" required>
+                    </td>
+                    <td>
+                        <label for="Dyscyplina"></label>
+                        <input type="text" id="Dyscyplina" th:field="*{dyscyplina}" class="form-control-sm" required>
+                    </td>
+                    <td>
+                        <label for="E-mail"></label>
+                        <input type="text" id="E-mail" th:field="*{czySzkolenieRko}" class="form-control-sm" required>
+                    </td>
+                    <td>
+                        <label for="nrPracownika"></label>
+                        <input type="text" id="nrPracownika" th:field="*{nrPracownika}" class="form-control-sm " required>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-success " type="submit"> Zapisz </button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        </form>
+        <button class="btn btn-outline-info center" id="addButton" onclick="showHideRow()"> Dodaj </button>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<form th:action="@{/updateTrenerzy}" th:object="${trenerAdd}" method="post">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="popover" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edytuj</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="stopien_zaawansowania1"> Zaawansowanie</label>
+                            <input id="stopien_zaawansowania1" class="getData" type="text" th:field="*{stopienZaawansowania}">
+                        </div>
+                        <div class="col">
+                            <label for="licencja"> Nr licencji</label>
+                            <input class="getData" type="text" th:field="*{nrLicencji}" id="licencja">
+                        </div>
+                        <div class="col">
+                            <label for="data1"> Data ważności lic.</label>
+                            <input class="getData" type="date" th:field="*{dataWaznosciLicencji}" id="data1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="dyscyplina1">Dyscyplina</label>
+                            <input class="getData" type="text" th:field="*{dyscyplina}" id="dyscyplina1">
+                        </div>
+                        <div class="col">
+                            <label for="szkolenie">Czy szkolenie RKO</label>
+                            <input class="getData" type="text" th:field="*{czySzkolenieRko}" id="szkolenie">
+                        </div>
+                        <div class="col">
+                            <label for="nrPracownika1">Nr pracownika</label>
+                            <input class="getData" type="number" th:field="*{nrPracownika}" id="nrPracownika1" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Potwierdz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form th:action="@{/delete_trener}" method="post" th:object="${trenerAdd}">
+    <label></label>
+    <input style="display: none" id="confirmId" th:field="*{nrPracownika}">
+    <button style="display: none" id="confirmBtn" type="submit"></button>
+</form>
+
+
+<!-- footstop -->
+<div class="footer flx">
+    <p class="col-1" style="column-width: auto; bottom: 0">
+        <strong>Adres:</strong>
+        <br>
+        ul. Gandalfa 32a
+        <br>
+        02-312, Warszawa
+    </p>
+    <p class="col-2" style="column-width: fit-content">
+        <strong>Kontakt:</strong>
+        <br>
+        <i class="fas fa-phone"></i>
+        tel2: +48 506 215 719
+        <br>
+        <i class="fas fa-envelope"></i>
+        e-mail: klub_lekkoatletyczny@gmail.com
+    </p>
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

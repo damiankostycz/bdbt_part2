@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Klub Lekkoatletyczny</title>
+    <title>Main User</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
@@ -11,7 +11,7 @@
 
 </head>
 
-<body th:style="'background: url(https://wallpapercave.com/wp/wp2089569.jpg) no-repeat center center fixed; '">
+<body th:style="'background: url(https://wallpapercave.com/w/wp3447877.jpg) no-repeat center center fixed; '">
 
 
 
@@ -20,15 +20,22 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-link  shadow-5-strong">
     <div class="container">
-        <a class="navbar-brand font-weight-bold p1"  href="/">Klub Lekkoatletyczny</a>
+        <a class="navbar-brand font-weight-bold p1" >Klub Lekkoatletyczny</a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a th:href="@{/main_user}" class="nav-link">Strona główna</a>
+                </li>
                 <li class="nav-item active">
-                    <a th:href="@{/nasze_zawody}" class="nav-link">Nasze zawody</a>
+                    <a th:href="@{/nasze_zawody_user}" class="nav-link">Nasze zawody</a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/zawodnicy}" class="nav-link">Zawodnicy</a>
+                    <a th:href="@{/zawodnicy_user}" class="nav-link">Zawodnicy</a>
                 </li>
+                <li class="nav-item">
+                    <a th:href="@{/trenerzy_user}" class="nav-link">Trenerzy</a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -51,8 +58,9 @@
 
 <div class="center" style="color:aliceblue;">
     <h1 style="font-family: Impact, fantasy" > WITAMY! </h1>
-    <p>To oficjalna strona naszego Klubu Lekkoatletycznego.</p>
-    <p>Jeśli chcesz zobaczyć więcej musisz się zalogować.</p>
+    <p>Znajdujesz się na Twojej stronie użytkownika</p>
+    <p>Możesz zobaczyć nasze występy na zawodach, zobacyzć jakich mamy trenerów</p>
+    <p>A co najważniejsze możesz zapisać się do naszego klubu. Nie zwlekaj !!!</p>
 </div>
 
 <!-- footstop -->

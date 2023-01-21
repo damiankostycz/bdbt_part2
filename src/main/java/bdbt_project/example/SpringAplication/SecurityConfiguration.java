@@ -17,10 +17,11 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/index", "/resources/static/**").permitAll()
+                        .requestMatchers("/", "/index", "/resources/static/**", "/user/nasze_zawody_user").permitAll()
                         .requestMatchers("/main").authenticated()
-                        .requestMatchers("/main_user").hasRole("USER")
-                        .requestMatchers("/main_admin").hasRole("ADMIN")
+                        .requestMatchers("/main_user", "/resources/templates/user/**").hasRole("USER")
+                        //TODO:dodac widoki po kolei
+                        .requestMatchers("/main_admin", "/resources/templates/admin/**","/trenerzy_admin").hasRole("ADMIN")
                         .anyRequest().authenticated() //Any other request that doesn’t match the rules above, will require authentication
 
                 )

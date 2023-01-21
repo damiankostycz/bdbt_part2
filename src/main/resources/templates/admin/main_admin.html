@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Klub Lekkoatletyczny</title>
+    <title>Main Admin</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
@@ -20,14 +20,14 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-link  shadow-5-strong">
     <div class="container">
-        <a class="navbar-brand font-weight-bold p1"  href="/">Klub Lekkoatletyczny</a>
+        <a class="navbar-brand font-weight-bold p1" >Klub Lekkoatletyczny</a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item ">
-                    <a th:href="@{/nasze_zawody}" class="nav-link">Nasze zawody</a>
+                    <a th:href="@{/nasze_zawody_admin}" class="nav-link">Nasze zawody</a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/trenerzy}" class="nav-link">Trenerzy i sekcje</a>
+                    <a th:href="@{/trenerzy_admin}" class="nav-link">Trenerzy</a>
                 </li>
                 <li class="nav-item">
                     <a th:href="@{/zawodnicy}" class="nav-link">Zawodnicy</a>
@@ -35,9 +35,7 @@
                 <li class="nav-item">
                     <a th:href="@{/pracownicy}" class="nav-link">Pracownicy</a>
                 </li>
-                <li class="nav-item active">
-                    <a th:href="@{/main_admin}" class="nav-link">Strona Admina</a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -59,9 +57,7 @@
 
 
 <div class="center" style="color:aliceblue;">
-    <h1 style="font-family: Impact, fantasy" > WITAMY! </h1>
-    <p>To oficjalna strona naszego Klubu Lekkoatletycznego.</p>
-    <p>Jeśli chcesz zobaczyć więcej musisz się zalogować.</p>
+    <h1 style="font-family: Impact, fantasy" > WITAMY ADMIN! </h1>
 </div>
 
 <!-- footstop -->

@@ -19,13 +19,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 mt-5">
-            <form method="post" th:action="@{/index}">
                 <div class="form-group">
                     <div><b><p style="font-size:30px">Przepraszamy! Coś poszło nie tak :(</p></b></div>
                     <div><p style="font-size:24px">403 - Forbidden page</p></div>
                 </div>
-                <a th:href= "@{/index}" class="btn btn-outline-primary" type="submit" >Powrót do strony głównej</a>
-            </form>
+                <a th:href= "@{/errorh}" class="btn btn-outline-primary" type="submit" >Powrót do strony głównej</a>
         </div>
     </div>
 </div>

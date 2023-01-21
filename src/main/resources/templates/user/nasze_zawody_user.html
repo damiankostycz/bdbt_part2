@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Nasze zawody</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.14.0/css/all.css}" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand font-weight-bold p1">Klub Lekkoatletyczny</a>
+        <div>
+            <a th:href="@{/main_user}" class="btn btn-dark btn-sm">Strona główna</a>
+            <a th:href="@{/nasze_zawody_user}" class="btn btn-primary btn-sm">Nasze zawody</a>
+            <a th:href="@{/zawodnicy_user}" class="btn btn-dark btn-sm">Zawodnicy</a>
+            <a th:href="@{/trenerzy_user}" class="btn btn-dark btn-sm">Trenerzy</a>
+        </div>
+    </div>
+    <button class="btn btn-outline-primary navbar-brand ml-auto" type="button">
+        <i class="fas fa-user-circle"></i>
+        <span sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name"></span>
+        </span>
+    </button>
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-outline-danger navbar-brand ml-auto" role="button" aria-pressed="false" >Wyloguj</button>
+    </form>
+</nav>
+
+<div class="container">
+    <div class="center" style="color: black" >
+        <h1> Zawody w których braliśmy udział </h1>
+    </div>
+
+</div>
+
+<div class="container d-flex justify-content-center" >
+    <div class="text-center" style="color: black" >
+        <table class="table-center table table-hover">
+            <thead>
+                <tr>
+                    <th>Nr_zawodów</th>
+                    <th>Data</th>
+                    <th>Liczba widzów</th>
+                    <th>Złote medale</th>
+                    <th>Srebrne medale</th>
+                    <th>Brązowe medale</th>
+                    <th>Numer klubu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="zawody: ${zawody}">
+                    <td th:text="${zawody.nrZawodow}"></td>
+                    <td th:text="${zawody.data}"></td>
+                    <td th:text="${zawody.liczbaBiletow}"></td>
+                    <td th:text="${zawody.zloteMedale}"></td>
+                    <td th:text="${zawody.srebrneMedale}"></td>
+                    <td th:text="${zawody.brazoweMedale}"></td>
+                    <td th:text="${zawody.nrKlubu}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- footstop -->
+<div class="footer flx">
+    <p class="col-1" style="column-width: auto; bottom: 0">
+        <strong>Adres:</strong>
+        <br>
+        ul. Gandalfa 32a
+        <br>
+        02-312, Warszawa
+    </p>
+    <p class="col-2" style="column-width: fit-content">
+        <strong>Kontakt:</strong>
+        <br>
+        <i class="fas fa-phone"></i>
+        tel2: +48 506 215 719
+        <br>
+        <i class="fas fa-envelope"></i>
+        e-mail: klub_lekkoatletyczny@gmail.com
+    </p>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

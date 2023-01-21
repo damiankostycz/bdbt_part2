@@ -43,8 +43,10 @@ class SpringAplicationApplicationTests {
 	@Test
 	void testList(){
 		List<Zawodnik> zawodnikList = daoZawodnicy.list();
-		System.out.println(zawodnikList);
 		assertFalse(zawodnikList.isEmpty());
+		List<Trener> trenerList = daoTrenerzy.listUser();
+		System.out.println(trenerList);
+		assertFalse(trenerList.isEmpty());
 	}
 	@Test
 	void deleteTest(){
@@ -64,10 +66,7 @@ class SpringAplicationApplicationTests {
 		Pracownik pracownik = new Pracownik(3, "Wiktor", "Serek", "M", "02365145256", "125485475", "wikotrs@wp.pl", LocalDate.now(), 1);
 		daoPracownicy.save(pracownik);
 	}
-	@Test
-	void addTestTrener(){
-		Trener trener = new Trener(3, "Serek", "Wiktor", "gimnastyka", "123", "569874569", 1, "sredni" );
-	}
+
 	@Test
 	void getTestZawody() {
 		int id = 4;

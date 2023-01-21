@@ -1,4 +1,24 @@
 
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+)(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    const tbody = table.querySelector('tbody');
+    Array.from(tbody.querySelectorAll('tr'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => tbody.appendChild(tr) );})));
+
+
+
+
+
+
+
+
 
 function deleteConfirmation(){
     const btn = document.getElementById("confirmBtn")
@@ -36,20 +56,23 @@ for(let x=0; x<editButtons.length; x++){
         });
     }
 
-const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
-
-const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-)(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-
-document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-    const table = th.closest('table');
-    const tbody = table.querySelector('tbody');
-    Array.from(tbody.querySelectorAll('tr'))
-        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-        .forEach(tr => tbody.appendChild(tr) );})));
 
 
+const usunBtn = document.getElementsByClassName("usunBtn")
+for(let x=0; x<usunBtn.length; x++){
+    usunBtn[x].addEventListener("click", function(e){
+        let temp = e.target.parentNode.parentNode;
+        const list = temp.getElementsByClassName("delete");
+        if(confirm("Czy na pewno chcesz usunąć wybrany element?")){
+            document.getElementById("confirmId").value=parseInt(list[0].textContent)
+            btn.click();
+            alert("Dane zostały usunięte")}
+        else {
+            alert("Anulowano usunięcie")
+        }
+    });
+}
 
+const btn = document.getElementById("confirmBtn")
 
 
