@@ -73,7 +73,7 @@
         <tr id="myForm" style="display:none">
           <td>
             <label for="nrPracownika"></label>
-            <input id="nrPracownika" type="number"  th:field="*{nrPracownika}" class="form-control-sm" required readonly>
+            <input id="nrPracownika" type="number"  th:field="*{nrPracownika}" class="form-control-sm" required >
           </td>
           <td>
             <label for="Imie"></label>
@@ -135,7 +135,7 @@
           <div class="row">
             <div class="col">
               <label for="nrpracownika1"> Nr pracownika</label>
-              <input class="getData" type="text" th:field="*{nrPracownika}" id="nrpracownika1">
+              <input class="getData" type="text" th:field="*{nrPracownika}" id="nrpracownika1" readonly>
             </div>
             <div class="col">
               <label for="Imie1"> Imie</label>
@@ -173,7 +173,7 @@
             </div>
               <div class="col">
                 <label for="nrKlubu">Nr klubu</label>
-                <input class="getData" type="text" id="nrKlubu" th:field="*{nrKlubu}" >
+                <input class="getData" type="text" id="nrKlubu" th:field="*{nrKlubu}" readonly>
               </div>
           </div>
           <div class="modal-footer">
