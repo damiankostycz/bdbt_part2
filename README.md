@@ -1,1 +1,2 @@
-# bdbt_part2
+# Aplikacja kliencka współpracująca ze stworzoną wcześniej bazą danych.
+Aplikacja ma wspierać działanie klubu lekkoatletycznego pozwalając użytkownikom na zapiwywanie/wypisanie się z klubu, sprwdzenie swoich ststystyk oraz ststystyk klubu. Aministratorowi przydzielone są większe kompetencje, kótre pozwalają na edytowanie, uswuwanie oraz dodawanie każdego elemntu który jest połączony z bazą danych. Wykorzystane technologie: Spring, SpringBoot, Bootstrap, JUnit, Thymeleaf, CSS, HTML, JavaScript, Java. Więcej informacji oraz przykładwych screnów z działania aplikacji można znaeźć po lnkiem: https://drive.google.com/drive/folders/19q3_Zk-Tz6jvf0ogw-co9S88WNLqhpkU?usp=sharing w piku Dokumnetacja_aplikacja_kliencka
